@@ -1,0 +1,43 @@
+
+weight: 66
+. weight: 27
+. . weight: 12
+. . . weight: 6 char: V
+. . . weight: 6
+. . . . weight: 3 char:  
+. . . . weight: 3
+. . . . . weight: 1 char: M
+. . . . . weight: 2 char: Y
+. . weight: 15
+. . . weight: 7 char: O
+. . . weight: 8 char: R
+. weight: 39
+. . weight: 18
+. . . weight: 9 char: I
+. . . weight: 9
+. . . . weight: 4 char: F
+. . . . weight: 5 char: A
+. . weight: 21
+. . . weight: 10 char: T
+. . . weight: 11 char: E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
