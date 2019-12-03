@@ -94,7 +94,7 @@ void CreateHuffmanTree(HuffmanTree &T,int *w,char *z,int n){
 		T[i].left=s1;
 		T[i].right=s2;
 		T[i].weight=T[s1].weight+T[s2].weight;
-	printf("父亲节点%d-------",T[i].weight);
+	//printf("父亲节点%d-------",T[i].weight);
 	}
 
 struct Node{
@@ -105,7 +105,7 @@ struct Node{
         int rchild;
     } node [m+1];
      
-    FILE * output  = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/hufftree.dat","w");
+    FILE * output  = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/hufftree.dat","w");
     if(output == NULL){
         printf("无法打开文件");
         exit(0);
@@ -163,14 +163,14 @@ void PrintHuffmanCode(HuffmanCode C,int *w,char *z,int n) {
 void Encoding(HuffmanCode C,char *z,int n){
 	 char buff[255];
 	FILE *fp = NULL;
- fp = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/ToBeTran.txt", "r");
+ fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/ToBeTran.txt", "r");
 		 fgets(buff,255, (FILE*)fp);
 		 fclose(fp);
 		printf("ToBeTran:%s\n",buff);
 		//把字符串取出来存放到字符数组buff中 
 	//	printf("%c",buff[0]);
 		FILE *fp2 = NULL;
-		 fp2 = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/CodeFile.txt", "w+");
+		 fp2 = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/CodeFile.txt", "w+");
 		 int i=0;
 		 while(buff[i]!=0){
 //		 	printf("进循环了\n");
@@ -196,11 +196,11 @@ void Decoding(int n,HuffmanCode C,char *z){
 HuffmanCode D=new char *[1024];
 	 char buff[255];
 		 FILE *fp = NULL;
-		 fp = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/CodeFile.txt", "r");
+		 fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/CodeFile.txt", "r");
 		 fgets(buff, 255, (FILE*)fp);
 		 //先把CodeFile.txt中的huffmancode取出来存到buff数组中 
 		  fclose(fp);
-		  fp = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/TextFile.txt", "w");
+		  fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/TextFile.txt", "w");
 		  printf("CodeFile:%s\n",buff);
 		  int i=0,j=0,index=0;
 		  
@@ -269,7 +269,7 @@ void HuffPrint(HuffmanTree T,int i,int &count){
 	int counting=count;
 
 	 FILE *fp = NULL;
-		 fp = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/HuffPrint.txt", "a");
+		 fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/HuffPrint.txt", "a");
 		 fprintf(fp,"\n");
 	if(i){
 			while(counting){
@@ -281,14 +281,14 @@ void HuffPrint(HuffmanTree T,int i,int &count){
 				fputs("weight: ",fp);
 				int lenth=1;
 				int weight=T[i].weight;
-				printf("此时的weight=%d",weight);
+			//	printf("此时的weight=%d",weight);
 				//算出权值为几位数 
 				while(weight/10>=1){
 					lenth++;
 					weight=weight/10;
 				}
 				weight=T[i].weight;
-				printf("此时的lenth=%d\n",lenth);
+			//	printf("此时的lenth=%d\n",lenth);
 				char buff[lenth];
 				int index=lenth;
 				//把int类型的权值转化为字符串存到数组buff中 
@@ -315,7 +315,7 @@ void HuffPrint(HuffmanTree T,int i,int &count){
 					}
 						fclose(fp);
 	
-	printf("T[i].left=%d\n",T[i].left);
+	//printf("T[i].left=%d\n",T[i].left);
 	int count2=count;
 	HuffPrint(T,T[i].left, count);
 	//printf("wowowowowowowowowowowowowowowo");
@@ -327,7 +327,7 @@ int main(void){
 
 	 char buff[255];
 	FILE *fp = NULL;
- fp = fopen("C://Users/Administrator/Desktop/数据结构实验/哈夫曼树/ToBeTran.txt", "r");
+ fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/ToBeTran.txt", "r");
 		 fgets(buff,255, (FILE*)fp);
 		 fclose(fp);
 
