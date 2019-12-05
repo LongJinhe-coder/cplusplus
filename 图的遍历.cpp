@@ -15,11 +15,12 @@ typedef int Status;
 typedef int VertexType;
 
 int visited[max];
-VertexType allvexdata1[max],allvexdata2[max];
+
 int k=0,x=0;
 //	int index;
 //	int v;//开始访问的结点位置 
 typedef struct ArcNode{
+	int firstvex;//该弧依附的顶点位置 
 	int adjvex;//该弧指向的顶点位置
 	struct ArcNode *nextarc;//指向下一条弧的指针 
 }ArcNode;
@@ -36,7 +37,8 @@ typedef struct ALGraph{
 
 
 typedef struct QNode{
-	VNode data;
+	VNode data;//借助栈来存储顶点，用于广度优先搜索 
+	ArcNode arc;//借助栈来存储弧，用于记录生成树边集 
 	struct QNode *next;
 }QNode,*QueuePtr;
 
@@ -58,6 +60,16 @@ Status EnQueue(LinkQueue &Q,VNode e){
 	//QueuePtr p=(QueuePtr)malloc(sizeof(QNode));
 	if(!p)exit(OVERFLOW);
 	p->data=e; p->next=NULL;//cout<<"入栈元素:"<<e.data;
+	Q.rear->next=p;
+	Q.rear=p;
+	return OK;
+	
+}
+Status EnQueue2(LinkQueue &Q,ArcNode e){
+	QueuePtr p=new QNode;
+	//QueuePtr p=(QueuePtr)malloc(sizeof(QNode));
+	if(!p)exit(OVERFLOW);
+	p->arc=e; p->next=NULL;//cout<<"入栈元素:"<<e.data;
 	Q.rear->next=p;
 	Q.rear=p;
 	return OK;
@@ -114,11 +126,13 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 		i=LocateVex(G,v1);
 	 		j=LocateVex(G,v2);
 	 		if(!(pi=new ArcNode)) exit(OVERFLOW);
+	 		pi->firstvex=i;//pi弧依附的顶点i位置 
 	 		pi->adjvex=j;//pi弧指向顶点j 
 	 		pi->nextarc=G.vertices[i].firstarc;//头插法创建链表 
 	 		G.vertices[i].firstarc=pi;
 	 		
 	 			if(!(pj=new ArcNode)) exit(OVERFLOW);
+	 			pj->firstvex=j;//pj弧依附的顶点j位置 
 	 			pj->adjvex=i;//pj弧指向顶点i 
 	 		pj->nextarc=G.vertices[j].firstarc;//头插法创建链表 
 	 		G.vertices[j].firstarc=pj;
@@ -126,25 +140,27 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 return OK;
  }
  //深度优先搜索 
- void DFS(ALGraph G,int v){
+ void DFS(ALGraph G,int v,LinkQueue &Q){
  	ArcNode *p;
 	int w;
 		
  	visited[v]=true;
- 	
- 	//将依次遍历的数据存入数组 
- 	allvexdata1[k]=G.vertices[v].data;
- 	k++;
+ 	cout<<G.vertices[v].data<<" ";
+ 
  	//循环从第一个邻接点开始，到最后一个结束 
  	for(p=G.vertices[v].firstarc;p;p=p->nextarc){
+ 		
  		w=p->adjvex;
- 		if(!visited[w])
- 		//递归遍历 
- 		DFS(G,w);
+ 		if(!visited[w]){
+ 			EnQueue2(Q,*p);//当前弧进栈 
+ 			//递归遍历 
+ 		DFS(G,w,Q);
+		 }
+ 		
 	 }
  }
  
- void DFSTravers(ALGraph G,int v){
+ void DFSTravers(ALGraph G,int v,LinkQueue &Q){
  	
  	if(v<1||v>G.vexnum){
  		cout<<"v的位置不合理";
@@ -157,64 +173,19 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 
 	 for(int i=0;i<G.vexnum;i++){
 	 	if(!visited[v-1])
-	 	DFS(G,v-1);
+	 	DFS(G,v-1,Q);
 	 	//用于非联通图 
 	 	for(int j=0;j<G.vexnum;j++){
 	 		if(!visited[j]){
 	 			v=j+1;
-	 			allvexdata1[k]=-1;//用0来记录非联通图的断点 
- 	k++;
 	 			break;
 			 }
 		 }
 	 }
  } 
- 
 
- Status DFSPrint(){
- 	cout<<"深度优先搜索结点访问序列如下:"<<endl;
- 	int i=0;
- 	//循环输出数组 
- 	while(allvexdata1[i]){
- 		if(allvexdata1[i]!=-1){
- 			cout<<allvexdata1[i];
- 	
-		 } 
- 			i++;
-	 }
-	 int j=0; 
-	 cout<<endl<<"深度优先搜索生成树的边集如下:"<<endl;
-	 while(allvexdata1[j+1]){
-	 	if(allvexdata1[j]!=-1&&allvexdata1[j+1]!=-1)
- 		cout<<allvexdata1[j]<<"---"<<allvexdata1[j+1]<<", ";
- 		j++;
-	 }
-	 cout<<endl;
-	 return OK;
- }
- 
- Status BFSPrint(){
- 	cout<<"广度优先搜索结点访问序列如下:"<<endl;
- 	int i=0;
- 		//循环输出数组 
- 	while(allvexdata2[i]){
- 		if(allvexdata2[i]!=-1)
- 		cout<<allvexdata2[i];
- 		i++;
-	 }
-	 int j=0;
-	 cout<<endl<<"广度优先搜索生成树的边集如下:"<<endl;
-	 while(allvexdata2[j+1]){
-	 	if(allvexdata2[j]!=-1&&allvexdata2[j+1]!=-1)
- 		cout<<allvexdata2[j]<<"---"<<allvexdata2[j+1]<<", ";
- 		j++;
-	 }
-	 cout<<endl;
-	 return OK;
-	 
- }
  //广度优先搜索 
- void BFSTraverse(ALGraph G,LinkQueue &Q,int v){
+ void BFSTraverse(ALGraph G,LinkQueue &Q,LinkQueue &Q2,int v){
  	ArcNode *p;
  	VNode e;
 
@@ -225,9 +196,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 	if(!visited[v-1]){
 	 		//访问到的结点入栈 
 	 		EnQueue(Q,G.vertices[v-1]);visited[v-1]=true; 
-	 		//并把访问结点的数据存入数组 
-			 allvexdata2[x]=G.vertices[v-1].data;
- 				x++;
+	 		cout<<G.vertices[v-1].data<<" ";
  			
 	 		while(Q.front!=Q.rear){
 	 			//结点出栈，并将结点信息赋值给e传出来 
@@ -238,10 +207,9 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 			for(p=e.firstarc;p;p=p->nextarc){
 	 			
 	 		if(!visited[p->adjvex]){
-	 			
+	 			EnQueue2(Q2,*p);//当前弧进栈 
 	 			EnQueue(Q,G.vertices[p->adjvex]);visited[p->adjvex]=true;
-				 allvexdata2[x]=G.vertices[p->adjvex].data;
- 				x++;	//cout<<"计数"<<endl;
+	 			cout<<G.vertices[p->adjvex].data<<" ";
  				
 			 }
 			 
@@ -253,8 +221,6 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 		 for(int j=0;j<G.vexnum;j++){
 	 		if(!visited[j]){
 	 			v=j+1;
-	 			 allvexdata2[x]=-1;//用0来记录非联通图的断点 
- 				x++;
 	 			break;
 			 }
 		 }
@@ -263,30 +229,37 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 
 	 
  }
- 
-// void Test(ALGraph G,LinkQueue &Q){
-// 		VNode e;
-// 	for(int i=0;i<G.vexnum;i++){
-// 		EnQueue(Q,G.vertices[i]);
-//	 }
-//	 for(int i=0;i<G.vexnum;i++){
-// 		DeQueue(Q,e);
-//	 }
-// }
+ //打印生成树边集 
+ void PrintArc(ALGraph G,LinkQueue Q){
+ 	while(Q.front!=	Q.rear){
+ 		cout<<G.vertices[Q.front->next->arc.firstvex].data<<"--"
+		 <<G.vertices[Q.front->next->arc.adjvex].data<<" ";
+		 Q.front=Q.front->next;
+	 }
+ }
+
  int main(){
  	ALGraph G;
  	
  	LinkQueue q;
  	InitQueue(q);
- 	
+ 	LinkQueue q1;
+ 	InitQueue(q1);
+ 	LinkQueue q2;
+ 	InitQueue(q2);
  	CreateList(G);
- 	//int visited[G.vexnum-1];
- //	Test(G,q);
+ 
  int v;
  	cout<<"请输入开始的结点位置v,注意1<=v<="<<G.vexnum<<endl;
  	cin>>v;
- 	DFSTravers(G,v);
- 	DFSPrint();
- 	BFSTraverse(G,q,v);
- 	BFSPrint();
+ 	cout<<"深度优先搜索顺序：";
+ 	DFSTravers(G,v,q1);
+ 	cout<<endl<<"深度优先搜索生成树边集：";
+ 	PrintArc(G,q1);
+ 	//DFSPrint();
+ 	cout<<endl<<"广度优先搜索顺序：";
+ 	BFSTraverse(G,q,q2,v);
+ 	cout<<endl<<"广度优先搜索生成树边集：";
+ 	PrintArc(G,q2);
+ 	//BFSPrint();
  } 
