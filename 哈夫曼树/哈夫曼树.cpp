@@ -264,18 +264,17 @@ HuffmanCode D=new char *[1024];
 //    fclose(input);
 //
 //}
-void HuffPrint(HuffmanTree T,int i,int &count){
+void HuffPrint(HuffmanTree T,int i,int &count,FILE *fp){
 		count++;//到孩子结点，计数加1; 
 	int counting=count;
 
-	 FILE *fp = NULL;
-		 fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/HuffPrint.txt", "a");
-		 fprintf(fp,"\n");
+//	 FILE *fp = NULL;
+		 //fp = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/HuffPrint.txt", "w");
+//		 fprintf(fp,"\n");
 	if(i){
 			while(counting){
 				 fputc('.', fp);
 				  fputc(' ', fp);
-				   
 				   counting--;
 			}
 				fputs("weight: ",fp);
@@ -313,13 +312,14 @@ void HuffPrint(HuffmanTree T,int i,int &count){
 						fputs(" char: ",fp);
 						fputc(T[i].ch,fp);
 					}
-						fclose(fp);
+					 fprintf(fp,"\n");
+//						fclose(fp);
 	
 	//printf("T[i].left=%d\n",T[i].left);
 	int count2=count;
-	HuffPrint(T,T[i].left, count);
+	HuffPrint(T,T[i].left, count,fp);
 	//printf("wowowowowowowowowowowowowowowo");
-	HuffPrint(T,T[i].right, count2);
+	HuffPrint(T,T[i].right, count2,fp);
 	}
 	
 }
@@ -386,7 +386,10 @@ int main(void){
     Encoding(code,z,n);
     Decoding(n,code,z);
     int count=-1;
-    HuffPrint(p,2*n-1,count);
+    FILE *fp2 = NULL;
+     fp2 = fopen("C://Users/Administrator/Desktop/数据结构实验/cplusplus/哈夫曼树/HuffPrint.txt", "w");
+    HuffPrint(p,2*n-1,count,fp2);
+    fclose(fp2);
     //PrintHuffmanTree(code, n);
     return 0;
 }
