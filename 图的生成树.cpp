@@ -62,7 +62,7 @@ Status EnQueue(LinkQueue &Q,VNode e){
 	QueuePtr p=new QNode;
 	//QueuePtr p=(QueuePtr)malloc(sizeof(QNode));
 	if(!p)exit(OVERFLOW);
-	p->data=e; p->next=NULL;//cout<<"入栈元素:"<<e.data;
+	p->data=e; p->next=NULL;//cout<<"入队列元素:"<<e.data;
 	Q.rear->next=p;
 	Q.rear=p;
 	return OK;
@@ -76,7 +76,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 		return ERROR;
 	}
 	QueuePtr p=Q.front->next;
-	e=p->data;	//cout<<"出栈元素"<<e.data;
+	e=p->data;	//cout<<"出队列元素"<<e.data;
 	Q.front->next=p->next;
 	if(Q.rear==p)Q.rear=Q.front;
 	free(p);
@@ -226,7 +226,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 for(int i=0;i<G.vexnum;i++){
 	 	q=t;
 	 	if(!visited[v-1]){
-	 		//访问到的结点入栈 
+	 		//访问到的结点入队列 
 	 		EnQueue(Q,G.vertices[v-1]);visited[v-1]=true; 
 	 		//为二叉树的顶点分配内存 
 	 		CSTree m=new CSNode;
@@ -242,10 +242,10 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 			 q=m; t=q;//标记 
 			 
 	 		while(Q.front!=Q.rear){
-	 			//结点出栈，并将结点信息赋值给e传出来 
+	 			//结点出队列，并将结点信息赋值给e传出来 
 	 			DeQueue(Q,e);
 	 					int first=true; 
-	 		//cout<<"出栈元素"<<e.data;
+	 		//cout<<"出队列元素"<<e.data;
 	 		//遍历每个结点的相邻结点 
 	 			for(p=e.firstarc;p;p=p->nextarc){
 	 			

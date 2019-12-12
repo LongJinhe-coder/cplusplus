@@ -152,7 +152,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
  		
  		w=p->adjvex;
  		if(!visited[w]){
- 			EnQueue2(Q,*p);//当前弧进栈 
+ 			EnQueue2(Q,*p);//当前弧进队列 
  			//递归遍历 
  		DFS(G,w,Q);
 		 }
@@ -194,20 +194,20 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 }
 	 for(int i=0;i<G.vexnum;i++){
 	 	if(!visited[v-1]){
-	 		//访问到的结点入栈 
+	 		//访问到的结点入队列 
 	 		EnQueue(Q,G.vertices[v-1]);visited[v-1]=true; 
 	 		cout<<G.vertices[v-1].data<<" ";
  			
 	 		while(Q.front!=Q.rear){
-	 			//结点出栈，并将结点信息赋值给e传出来 
+	 			//结点出队列，并将结点信息赋值给e传出来 
 	 			DeQueue(Q,e);
 	 					 
-	 		//cout<<"出栈元素"<<e.data;
+	 		//cout<<"出队列元素"<<e.data;
 	 		//遍历每个结点的相邻结点 
 	 			for(p=e.firstarc;p;p=p->nextarc){
 	 			
 	 		if(!visited[p->adjvex]){
-	 			EnQueue2(Q2,*p);//当前弧进栈 
+	 			EnQueue2(Q2,*p);//当前弧进队列 
 	 			EnQueue(Q,G.vertices[p->adjvex]);visited[p->adjvex]=true;
 	 			cout<<G.vertices[p->adjvex].data<<" ";
  				
