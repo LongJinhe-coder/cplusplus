@@ -40,7 +40,7 @@ void InitStack_OPND(SqStack_OPND &S){
 
 SElemType GetTop_OPTR(SqStack_OPTR S){
 	if(S.top==S.base) {
-		printf("%d","ÊäÈëÓĞÎó/n");
+		printf("%d","è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else
 	return*(S.top-1);
@@ -49,7 +49,7 @@ SElemType GetTop_OPTR(SqStack_OPTR S){
 
 Status GetTop_OPND(SqStack_OPND S){
 if(S.top==S.base) {
-		printf("%d","ÊäÈëÓĞÎó/n");
+		printf("%d","è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else
 	return*(S.top-1);
@@ -83,7 +83,7 @@ void Push_OPND(SqStack_OPND &S,Status e){
 
 void Pop_OPTR(SqStack_OPTR &S){
 		if(S.top==S.base) {
-		printf("ÊäÈëÓĞÎó/n");
+		printf("è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else 
 		--S.top;
@@ -91,14 +91,14 @@ void Pop_OPTR(SqStack_OPTR &S){
 }
 void Pop_OPND(SqStack_OPND &S){
 		if(S.top==S.base) {
-		printf("ÊäÈëÓĞÎó/n");
+		printf("è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else 
 		--S.top;
 	
 }
 
-bool In(char c){ //ÅĞ¶ÏcÊÇ·ñÎª²Ù×÷Âë£¬ÊÇÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse
+bool In(char c){ //åˆ¤æ–­cæ˜¯å¦ä¸ºæ“ä½œç ï¼Œæ˜¯åˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false
     if(c == '+' || c == '-' || c == '*' || c == '/' || c == '#' || c == '(' || c == ')'){
         return true;
     }else{
@@ -106,7 +106,7 @@ bool In(char c){ //ÅĞ¶ÏcÊÇ·ñÎª²Ù×÷Âë£¬ÊÇÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse
     }
 }
 
-char Precede(char a,char b){ //±È½Ï²Ù×÷ÂëaºÍbµÄÓÅÏÈ¼¶
+char Precede(char a,char b){ //æ¯”è¾ƒæ“ä½œç aå’Œbçš„ä¼˜å…ˆçº§
     switch(a){
     case('+'):case('-'):
         switch(b){
@@ -140,7 +140,7 @@ char Precede(char a,char b){ //±È½Ï²Ù×÷ÂëaºÍbµÄÓÅÏÈ¼¶
     }
 }
 
-Status Operate(Status a,char op,Status b){ //¼ÆËã±í´ïÊ½ a op b
+Status Operate(Status a,char op,Status b){ //è®¡ç®—è¡¨è¾¾å¼ a op b
     switch(op){
     case('+'):
         return Status(a+b);
@@ -150,7 +150,7 @@ Status Operate(Status a,char op,Status b){ //¼ÆËã±í´ïÊ½ a op b
         return Status(a*b);
     case('/'):
     	if(b==0){
-    			printf("³ıÊı²»ÄÜÎª0\n");
+    			printf("é™¤æ•°ä¸èƒ½ä¸º0\n");
     				exit(OVERFLOW);
 		}
     
@@ -159,15 +159,15 @@ Status Operate(Status a,char op,Status b){ //¼ÆËã±í´ïÊ½ a op b
  }
 int main(){
     char c;SqStack_OPTR OPTR;SqStack_OPND OPND;
-   InitStack_OPTR(OPTR); Push_OPTR(OPTR,'#'); //±£´æ²Ù×÷ÊıºÍ½á¹ûµÄÕ»
-   InitStack_OPND(OPND); c=getchar();//±£´æ²Ù×÷ÂëµÄÕ»
+   InitStack_OPTR(OPTR); Push_OPTR(OPTR,'#'); //ä¿å­˜æ“ä½œæ•°å’Œç»“æœçš„æ ˆ
+   InitStack_OPND(OPND); c=getchar();//ä¿å­˜æ“ä½œç çš„æ ˆ
    
 
-    while(c != '#' || GetTop_OPTR(OPTR) != '#'){ //ÊäÈëÃ»½áÊø»òÕß²Ù×÷ÂëµÄÕ»²»Îª¿Õ
-        if(!In(c)){ //cÊÇ²Ù×÷Êı
+    while(c != '#' || GetTop_OPTR(OPTR) != '#'){ //è¾“å…¥æ²¡ç»“æŸæˆ–è€…æ“ä½œç çš„æ ˆä¸ä¸ºç©º
+        if(!In(c)){ //cæ˜¯æ“ä½œæ•°
         char a;Status b,d=0.0,n=10,x,y;
 		a=getchar();
-		x=c-'0';//°Ñc×ª»¯ÎªÊı×Ö 
+		x=c-'0';//æŠŠcè½¬åŒ–ä¸ºæ•°å­— 
         while(!In(a)){
         	if(a=='.'){
         		a=getchar();
@@ -189,29 +189,29 @@ int main(){
        	
 		}
 		x=x+d;
-           Push_OPND(OPND,x); //½«Êı×ÖÑ¹ÈëÕ»
-            printf("¶ÁÈëÊı×ÖÕ»µÄÎª%0.3f\n",x);
+           Push_OPND(OPND,x); //å°†æ•°å­—å‹å…¥æ ˆ
+            printf("è¯»å…¥æ•°å­—æ ˆçš„ä¸º%0.3f\n",x);
             c = a;
            
-        }else{ //cÎª²Ù×÷Âë
-            switch(Precede(GetTop_OPTR(OPTR),c)){ //ÅĞ¶ÏÕ»¶¥²Ù×÷ÂëºÍcµÄÓÅÏÈ¼¶
-            case('<'): //ÊäÈë×Ö·ûcµÄÓÅÏÈ¼¶½Ï´ó
-                Push_OPTR(OPTR,c);//cÈëÕ»
+        }else{ //cä¸ºæ“ä½œç 
+            switch(Precede(GetTop_OPTR(OPTR),c)){ //åˆ¤æ–­æ ˆé¡¶æ“ä½œç å’Œcçš„ä¼˜å…ˆçº§
+            case('<'): //è¾“å…¥å­—ç¬¦cçš„ä¼˜å…ˆçº§è¾ƒå¤§
+                Push_OPTR(OPTR,c);//cå…¥æ ˆ
                 c = getchar();
                 break;
-            case('>'):{ //ÊäÈë×Ö·ûcµÄÓÅÏÈ¼¶½ÏĞ¡
-                char theta = GetTop_OPTR(OPTR); //µÃµ½Õ»¶¥²Ù×÷Âë
-                Pop_OPTR(OPTR); //Õ»¶¥²Ù×÷Âë³öÕ»
-                Status b = GetTop_OPND(OPND); //È¡³öOPNDÕ»µÄÁ½¸ö²Ù×÷ÊıaºÍb
+            case('>'):{ //è¾“å…¥å­—ç¬¦cçš„ä¼˜å…ˆçº§è¾ƒå°
+                char theta = GetTop_OPTR(OPTR); //å¾—åˆ°æ ˆé¡¶æ“ä½œç 
+                Pop_OPTR(OPTR); //æ ˆé¡¶æ“ä½œç å‡ºæ ˆ
+                Status b = GetTop_OPND(OPND); //å–å‡ºOPNDæ ˆçš„ä¸¤ä¸ªæ“ä½œæ•°aå’Œb
                 Pop_OPND(OPND);
                 Status a = GetTop_OPND(OPND);
                 Pop_OPND(OPND);
-                Push_OPND(OPND,Operate(a,theta,b)); //½«a theta bÔËËã½á¹ûÈëÕ»OPND
+                Push_OPND(OPND,Operate(a,theta,b)); //å°†a theta bè¿ç®—ç»“æœå…¥æ ˆOPND
                 break;
             }
-            case('='):  //ÎŞÓÃµÄÀ¨ºÅ
+            case('='):  //æ— ç”¨çš„æ‹¬å·
 //               Pop_OPTR(OPTR,GetTop_OPTR(OPTR));
-			   Pop_OPTR(OPTR)  ;//ÎŞÓÃµÄÀ¨ºÅ³öÕ»
+			   Pop_OPTR(OPTR)  ;//æ— ç”¨çš„æ‹¬å·å‡ºæ ˆ
                 c = getchar();
                 break;
             default:
@@ -219,8 +219,8 @@ int main(){
             }
         }
     }
-    printf("½á¹ûÊÇ%0.3f",GetTop_OPND(OPND));
-   //OPNDÕ»¶¥µÄÊı¼´×îÖÕµÄ¼ÆËã½á¹û
+    printf("ç»“æœæ˜¯%0.3f",GetTop_OPND(OPND));
+   //OPNDæ ˆé¡¶çš„æ•°å³æœ€ç»ˆçš„è®¡ç®—ç»“æœ
     return 0;
 }
 

@@ -2,24 +2,24 @@
 #include<stdlib.h>
 #include<string.h>
 
-//¶¨Òå·ûºÅ³£Á¿ 
+//å®šä¹‰ç¬¦å·å¸¸é‡ 
 #define LIST_INIT_SIZE 50
 #define LISTINCREMENT 10
 #define OK 1
 #define ERROR 0
 #define OVERFLOW -2
 
-//¶¨ÒåÔªËØÀàĞÍ
+//å®šä¹‰å…ƒç´ ç±»å‹
 typedef int ElemType;
 
-//¶¨ÒåË³Ğò±íÀàĞÍ 
+//å®šä¹‰é¡ºåºè¡¨ç±»å‹ 
 typedef struct{
 ElemType *elem;
 int lenth;
 int listsize;
 }SqList;
 
-//¹¹ÔìË³Ğò±í 
+//æ„é€ é¡ºåºè¡¨ 
 int InitList(SqList *L)
 {
 	L->elem=(ElemType *)malloc(LIST_INIT_SIZE*sizeof(ElemType));
@@ -29,11 +29,11 @@ int InitList(SqList *L)
 	return OK;
 }
 
-//³õÊ¼»¯Ë³Ğò±í 
+//åˆå§‹åŒ–é¡ºåºè¡¨ 
 void InputList(SqList *L)
 {
 	int n,k,x;
-	printf("ÇëÊäÈë³õÊ¼»¯ÔªËØµÄÊıÄ¿n\n");
+	printf("è¯·è¾“å…¥åˆå§‹åŒ–å…ƒç´ çš„æ•°ç›®n\n");
 	scanf("%d",&n);
 
 	for(k=1;k<=n;k++){ 
@@ -43,13 +43,13 @@ void InputList(SqList *L)
 //	
 //		L->listsize+=LISTINCREMENT;
 //	}
-	printf("ÇëÊäÈëÔªËØ\n");
+	printf("è¯·è¾“å…¥å…ƒç´ \n");
 	scanf("%d",&x);
 	L->elem[k-1]=x;
 	L->lenth++;
 	}
 } 
-//¸øË³Ğò±íÅÅĞò 
+//ç»™é¡ºåºè¡¨æ’åº 
 int PaiXULIist(SqList *L)
 {
 	int k,i,x;
@@ -66,7 +66,7 @@ int PaiXULIist(SqList *L)
 	return OK;
 }
 
-//É¾³ıË³Ğò±íµÚi¸öÔªËØ 
+//åˆ é™¤é¡ºåºè¡¨ç¬¬iä¸ªå…ƒç´  
 int DeleteList(SqList *L,int i)
 {
 	int k;
@@ -77,14 +77,14 @@ int DeleteList(SqList *L,int i)
 	L->lenth--;
 	return OK;
 }
-//Ë³Ğò±íÊä³ö 
+//é¡ºåºè¡¨è¾“å‡º 
 void PrintList(SqList *L)
 {
 	int k;
 	for(k=0;k<L->lenth;k++)
 		printf("%d ",L->elem[k]);
 } 
-//ÔÚË³Ğò±íµÚi Î»ÖÃ²åÈëÔªËØ 
+//åœ¨é¡ºåºè¡¨ç¬¬i ä½ç½®æ’å…¥å…ƒç´  
 int InsertList(SqList *L,int i,ElemType e)
 {
 	int k;
@@ -103,7 +103,7 @@ int InsertList(SqList *L,int i,ElemType e)
 	L->lenth++;
 	return OK;
 }
-// ºÏ²¢Á½¸öË³Ğò±í
+// åˆå¹¶ä¸¤ä¸ªé¡ºåºè¡¨
 void TwoList(SqList *L1,SqList *L2,SqList *L3){
 	int i,j,k;
 	for(k=0;k<L1->lenth;k++)
@@ -145,32 +145,32 @@ int main()
    
     while(isRunning)  
     {  
-        printf("======Ë³Ğò±í²Ù×÷Ä¿Â¼=======\n");  
-        printf("1. ´´½¨Ò»¸ö¿ÕµÄË³Ğò±íp1\n");  
-        printf("2. ³õÊ¼»¯Ë³Ğò±íp1\n");  
-        printf("3. ¸øË³Ğò±íÅÅĞòp1\n");  
-        printf("4. ÍË³ö\n");  
-        printf("5. Êä³öË³Ğò±íp1µÄÈ«²¿ÔªËØ\n"); 
-         printf("6. ´´½¨Ò»¸ö¿ÕµÄË³Ğò±íp2\n");  
-        printf("7. ³õÊ¼»¯Ë³Ğò±íp2\n");  
-        printf("8. ¸øË³Ğò±íÅÅĞòp2\n");  
-        printf("9. Êä³öË³Ğò±íp2µÄÈ«²¿ÔªËØ\n");  
-        printf("10. ´´½¨Ò»¸ö¿ÕµÄË³Ğò±íp3\n"); 
-         printf("11. ºÏ²¢Á½Ë³Ğò±í\n"); 
-         printf("12. Êä³öË³Ğò±íp3µÄÈ«²¿ÔªËØ\n"); 
+        printf("======é¡ºåºè¡¨æ“ä½œç›®å½•=======\n");  
+        printf("1. åˆ›å»ºä¸€ä¸ªç©ºçš„é¡ºåºè¡¨p1\n");  
+        printf("2. åˆå§‹åŒ–é¡ºåºè¡¨p1\n");  
+        printf("3. ç»™é¡ºåºè¡¨æ’åºp1\n");  
+        printf("4. é€€å‡º\n");  
+        printf("5. è¾“å‡ºé¡ºåºè¡¨p1çš„å…¨éƒ¨å…ƒç´ \n"); 
+         printf("6. åˆ›å»ºä¸€ä¸ªç©ºçš„é¡ºåºè¡¨p2\n");  
+        printf("7. åˆå§‹åŒ–é¡ºåºè¡¨p2\n");  
+        printf("8. ç»™é¡ºåºè¡¨æ’åºp2\n");  
+        printf("9. è¾“å‡ºé¡ºåºè¡¨p2çš„å…¨éƒ¨å…ƒç´ \n");  
+        printf("10. åˆ›å»ºä¸€ä¸ªç©ºçš„é¡ºåºè¡¨p3\n"); 
+         printf("11. åˆå¹¶ä¸¤é¡ºåºè¡¨\n"); 
+         printf("12. è¾“å‡ºé¡ºåºè¡¨p3çš„å…¨éƒ¨å…ƒç´ \n"); 
           
         printf("===========================\n");  
-        printf("\nÊäÈë1-12,Ñ¡Ôñ²Ù×÷:");  
+        printf("\nè¾“å…¥1-12,é€‰æ‹©æ“ä½œ:");  
         scanf("%d", &choice);  
-        printf("\nÄãÑ¡ÔñµÄ¹¦ÄÜºÅÎª:%d\n", choice);  
+        printf("\nä½ é€‰æ‹©çš„åŠŸèƒ½å·ä¸º:%d\n", choice);  
  
         switch(choice)  
         {  
             case 1:
                 if (InitList(pl))
-                    printf("\n´´½¨Ë³Ğò±í³É¹¦!\n\n");    
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨æˆåŠŸ!\n\n");    
                 else
-                    printf("\n´´½¨Ë³Ğò±íÊ§°Ü!\n\n");
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨å¤±è´¥!\n\n");
                     
 
                 break;
@@ -182,7 +182,7 @@ int main()
            
             case 3:
                 PaiXULIist(pl);
-                printf("\nË³Ğò±íplÒÑ¾­ÅÅĞò!\n\n");
+                printf("\né¡ºåºè¡¨plå·²ç»æ’åº!\n\n");
 
                 break;
             case 4:
@@ -196,9 +196,9 @@ int main()
                 break;
              case 6:
                 if (InitList(p2))
-                    printf("\n´´½¨Ë³Ğò±í³É¹¦!\n\n");    
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨æˆåŠŸ!\n\n");    
                 else
-                    printf("\n´´½¨Ë³Ğò±íÊ§°Ü!\n\n");
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨å¤±è´¥!\n\n");
                     
 
                 break;
@@ -210,7 +210,7 @@ int main()
                 
             case 8:
                 PaiXULIist(p2);
-                printf("\nË³Ğò±íp2ÒÑ¾­ÅÅĞò!\n\n");
+                printf("\né¡ºåºè¡¨p2å·²ç»æ’åº!\n\n");
 
                 break;
                  case 9:
@@ -220,9 +220,9 @@ int main()
                 break;
                  case 10:
                 if (InitList(p3))
-                    printf("\n´´½¨Ë³Ğò±íp3³É¹¦!\n\n");    
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨p3æˆåŠŸ!\n\n");    
                 else
-                    printf("\n´´½¨Ë³Ğò±íp3Ê§°Ü!\n\n");
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨p3å¤±è´¥!\n\n");
                     
 
                 break;
@@ -232,7 +232,7 @@ int main()
                 break;
                 case 11:
                 	TwoList(pl,p2,p3);
-                	 printf("\nË³Ğò±íp1£¬p2ÒÑ¾­ºÏ²¢!\n\n");
+                	 printf("\né¡ºåºè¡¨p1ï¼Œp2å·²ç»åˆå¹¶!\n\n");
                 	break;
         }
     }
