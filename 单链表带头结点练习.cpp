@@ -22,7 +22,7 @@ Status CreateList(LinkList &L,int n){
 	 for(int i=0;i<n;i++){
 	 	p=new LNode;
 	 	ElemType x;
-	 	printf("输入链表的data\n");
+	 	printf("杈撳叆閾捐〃鐨刣ata\n");
 	 	scanf("%d",&x);
 	 	p->data=x;
 	 	p->next=L->next;
@@ -40,7 +40,7 @@ Status PostCreateList(LinkList &L,int n){
 	 for(int i=0;i<n;i++){
 	 	p=new LNode;
 	 	ElemType x;
-	 	printf("输入链表的data\n");
+	 	printf("杈撳叆閾捐〃鐨刣ata\n");
 	 	scanf("%d",&x);
 	 	p->data=x;
 	 	p->next=NULL;
@@ -49,20 +49,19 @@ Status PostCreateList(LinkList &L,int n){
 	 }
 	 return OK;
 }
-Status PrintList(LinkList L,int n){
-	printf("链表data如下\n");
-	LinkList p=L;
-	for(int i=0;i<n;i++){
-		p=p->next;
+Status PrintList(LinkList L){
+	printf("閾捐〃data濡備笅\n");
+	LinkList p=L->next;
+	while(p){
 		printf("%d",p->data);
-		
+		p=p->next;
 	}
-		printf("打印完成\n");
+		printf("鎵撳嵃瀹屾垚\n");
 	printf("\n");
 	return OK;
 }
 
-Status Insert(LinkList &L,int &i,ElemType e,int &lenth){
+Status Insert(LinkList &L,int i,ElemType e){
 	int j=1;
 	LinkList p=L;
 	while(p&&j<i){
@@ -74,11 +73,10 @@ Status Insert(LinkList &L,int &i,ElemType e,int &lenth){
 	s->data=e;
 	s->next=p->next;
 	p->next=s;
-	lenth++; 
 	return OK;
 }
 
-Status Delete(LinkList &L,int &i,ElemType &e,int &lenth){
+Status Delete(LinkList &L,int i,ElemType &e){
 	LinkList p=L;
 	int j=1;
 	while(p->next&&j<i){
@@ -90,25 +88,24 @@ Status Delete(LinkList &L,int &i,ElemType &e,int &lenth){
 	p->next=s->next;
 	e=s->data;
 	free(s);
-	lenth--;
 	return OK;
 }
 int main(){
 	LinkList L=new LNode;
 	int lenth,index,x,index2,data;
-	printf("请输入链表长度lenth=\n");
+	printf("璇疯緭鍏ラ摼琛ㄩ暱搴enth=\n");
 	scanf("%d",&lenth);
 	//CreateList(L,lenth);
 	PostCreateList(L,lenth);
-	 PrintList(L,lenth); 
-	 printf("请输入插入元素位置以及data\n");
+	 PrintList(L); 
+	 printf("璇疯緭鍏ユ彃鍏ュ厓绱犱綅缃互鍙奷ata\n");
 	 scanf("%d",&index);
 	 scanf("%d",&x);
-Insert(L,index,x,lenth);
-PrintList(L,lenth); 
-// printf("请输入删除元素位置\n");
-// scanf("%d",&index2);
-// Delete(L,index2,data,lenth);
+Insert(L,index,x);
+PrintList(L); 
+printf("璇疯緭鍏ュ垹闄ゅ厓绱犱綅缃甛n");
+scanf("%d",&index2);
+Delete(L,index2,data);
 //  PrintList(L,lenth);
-//  printf("删除元素的data=%d",data);
+ printf("鍒犻櫎鍏冪礌鐨刣ata=%d",data);
 }

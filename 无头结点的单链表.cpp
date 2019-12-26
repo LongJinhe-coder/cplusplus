@@ -13,11 +13,11 @@ typedef struct TNode{
 	ElemType data;
 	struct TNode *next;
 }TNode,*LinkList;
-//Í·²å·¨ 
+//å¤´æ’æ³• 
 Status CreateList(LinkList &L,int lenth){
 	ElemType x;
 	 L=new TNode;
-		printf("Çë³õÊ¼»¯data\n");
+		printf("è¯·åˆå§‹åŒ–data\n");
 		scanf("%d",&x);
 		L->data=x;
 		L->next=NULL;
@@ -25,7 +25,7 @@ Status CreateList(LinkList &L,int lenth){
 		LinkList p;
 	for(int i=1;i<lenth;i++){
 		if(!(p=new TNode))exit(OVERFLOW);
-		printf("Çë³õÊ¼»¯data\n");
+		printf("è¯·åˆå§‹åŒ–data\n");
 		scanf("%d",&x);
 		p->data=x;
 		p->next=head;
@@ -35,11 +35,11 @@ Status CreateList(LinkList &L,int lenth){
 	L=head;
 	return OK;
 }
-//Î²²å·¨ 
+//å°¾æ’æ³• 
 Status CreateList2(LinkList &L,int lenth){
 		ElemType x;
 	 L=new TNode;
-		printf("Çë³õÊ¼»¯data\n");
+		printf("è¯·åˆå§‹åŒ–data\n");
 		scanf("%d",&x);
 		L->data=x;
 		L->next=NULL;
@@ -47,7 +47,7 @@ Status CreateList2(LinkList &L,int lenth){
 		LinkList p;
 		for(int i=1;i<lenth;i++){
 			p=new TNode;
-			printf("Çë³õÊ¼»¯data\n");
+			printf("è¯·åˆå§‹åŒ–data\n");
 		scanf("%d",&x);
 		p->data=x;
 		p->next=NULL;
@@ -56,10 +56,10 @@ Status CreateList2(LinkList &L,int lenth){
 		}
 }
 
-Status InsertList(LinkList &L,int i,ElemType e,int &lenth){
+Status InsertList(LinkList &L,int i,ElemType e){
 	LinkList p=L;
 	int j=1;
-	if(i<1||i>lenth+1){
+	if(i<1){
 		printf("error");
 		return ERROR;
 	}
@@ -79,16 +79,16 @@ Status InsertList(LinkList &L,int i,ElemType e,int &lenth){
 	s->next=p->next;
 	p->next=s;
 	}
-	lenth++;
+	
   return OK;
 	
 }
 
-Status DeleteList(LinkList &L,int i,ElemType &e,int &lenth)
+Status DeleteList(LinkList &L,int i,ElemType &e)
 {
 	int j=1;
 	LinkList p=L;
-	if(i<1||i>lenth)return ERROR;
+	if(i<1)return ERROR;
 	if(i==1){
 		LinkList s=L;
 		e=s->data;
@@ -96,7 +96,7 @@ Status DeleteList(LinkList &L,int i,ElemType &e,int &lenth)
 		free(s);
 		return OK;
 	}else{
-		while(j<i-1){
+		while(p->next&&j<i-1){
 			p=p->next;
 			j++;
 		}
@@ -105,13 +105,12 @@ Status DeleteList(LinkList &L,int i,ElemType &e,int &lenth)
 		e=s->data;
 		free(s);
 	}
-	lenth--;
 	return OK;
  } 
-Status PrintList(LinkList L,int lenth){
-		printf("Á´±íµÄdataÈçÏÂ\n");
+Status PrintList(LinkList L){
+		printf("é“¾è¡¨çš„dataå¦‚ä¸‹\n");
 		LinkList p=L;
-	for(int i=0;i<lenth;i++){
+	while(p){
 			printf("%d",p->data);
 			
 			p=p->next;
@@ -123,19 +122,19 @@ int main(){
 	int lenth;
 	int index,data,e,index2;
 	LinkList L=new TNode;
-	printf("ÇëÊäÈëÁ´±í³¤¶Èlenth\n");
+	printf("è¯·è¾“å…¥é“¾è¡¨é•¿åº¦lenth\n");
 		scanf("%d",&lenth);
 //		CreateList(L,lenth) ;
 		CreateList2(L,lenth) ;
-		PrintList(L,lenth);
-		printf("ÇëÊäÈë²åÈëÔªËØµÄÎ»ÖÃ¼°data\n");
+		PrintList(L);
+		printf("è¯·è¾“å…¥æ’å…¥å…ƒç´ çš„ä½ç½®åŠdata\n");
 		scanf("%d",&index);
 		scanf("%d",&data);
-		InsertList(L,index,data,lenth);
-			PrintList(L,lenth);
-			printf("ÇëÊäÈëÉ¾³ıÔªËØµÄÎ»ÖÃ\n");
+		InsertList(L,index,data);
+			PrintList(L);
+			printf("è¯·è¾“å…¥åˆ é™¤å…ƒç´ çš„ä½ç½®\n");
 			scanf("%d",&index2);
-			DeleteList(L,index2,e,lenth);
-				PrintList(L,lenth);
-				printf("É¾³ıµÄÔªËØdata=%d",e);
+			DeleteList(L,index2,e);
+				PrintList(L);
+				printf("åˆ é™¤çš„å…ƒç´ data=%d",e);
 }
