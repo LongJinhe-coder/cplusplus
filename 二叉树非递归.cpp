@@ -24,21 +24,21 @@ typedef struct{
 	SElemType *top;
 	int stacksize;
 }SqStack;
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ 
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º 
 Status StackEmpty(SqStack S){
 	if(S.top==S.base)
 	return OK;
 	else return ERROR;
 }
-//½¨Á¢¿ÕÕ» 
+//å»ºç«‹ç©ºæ ˆ 
 void InitStack(SqStack &S){
 	S.base=(SElemType *)malloc(STACK_INIT_SIZE*sizeof(SElemType));
 	if(!S.base)exit(OVERFLOW);
 	S.top=S.base;
 	S.stacksize=STACK_INIT_SIZE;
-//		printf("ÊäÈëÓĞÎó\n");
+//		printf("è¾“å…¥æœ‰è¯¯\n");
 }
-//ÈëÕ» 
+//å…¥æ ˆ 
 void Push(SqStack &S,Tree &p){
 	if(S.top-S.base>=S.stacksize){
 		S.base=(SElemType *)realloc(S.base,
@@ -49,24 +49,24 @@ void Push(SqStack &S,Tree &p){
 	}
 *S.top++=p;	
 }
-//³öÕ» 
+//å‡ºæ ˆ 
 void Pop(SqStack &S,Tree &p){
 		if(S.top==S.base) {
-		printf("ÊäÈëÓĞÎó/n");
+		printf("è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else 
 	p=*--S.top;
 }
-//È¡Õ»¶¥ÔªËØ 
+//å–æ ˆé¡¶å…ƒç´  
 Status GetTop(SqStack S,Tree &p){
 	if(S.top==S.base) {
-		printf("ÊäÈëÓĞÎó/n");
+		printf("è¾“å…¥æœ‰è¯¯/n");
 		exit(OVERFLOW);
 	}else
 	p=*(S.top-1);
 	return OK;
 }
-//ÅĞ¶ÏÁ½Ö¸ÕëÊÇ·ñÏàÍ¬ 
+//åˆ¤æ–­ä¸¤æŒ‡é’ˆæ˜¯å¦ç›¸åŒ 
 Status Equal(Tree a,Tree b){
 	if(a==NULL||b==NULL)
 	return ERROR;
@@ -74,7 +74,7 @@ Status Equal(Tree a,Tree b){
 	return OK;
 	else return ERROR;
 }
-//ÏÈĞò³õÊ¼»¯¶ş²æÊ÷ 
+//å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘ 
 Status CreatTree(Tree &T){
 	TElemType ch;
 	scanf("%c",&ch);
@@ -88,12 +88,12 @@ Status CreatTree(Tree &T){
 	}
 	return OK;
 }
-//Êä³ö¶ş²æÊ÷data 
+//è¾“å‡ºäºŒå‰æ ‘data 
 Status PrintTree(Tree T){
 	printf("%c",T->data);
 	return OK;
 }
-//ÏÈĞòÊä³ö¶ş²æÊ÷ 
+//å…ˆåºè¾“å‡ºäºŒå‰æ ‘ 
 Status PreOrder(Tree p){
 	SqStack S;
 	InitStack(S);
@@ -108,7 +108,7 @@ Status PreOrder(Tree p){
 	}
 	return OK;
 }
-//ÖĞĞòÊä³ö¶ş²æÊ÷ 
+//ä¸­åºè¾“å‡ºäºŒå‰æ ‘ 
 Status InOrder(Tree p){
 	SqStack S;
 	InitStack(S);
@@ -123,22 +123,22 @@ Status InOrder(Tree p){
 	}
 	return OK;
 }
-//ºóĞøÊä³ö¶ş²æÊ÷ 
+//åç»­è¾“å‡ºäºŒå‰æ ‘ 
 Status PostOrder(Tree p){
 	SqStack S;
 	InitStack(S);
 //	Tree p=(TNode *)malloc(sizeof(TNode));p=T;
-	Tree pre=NULL;//ÓÃÀ´´æ´¢Êä³ö¹ıµÄ×óÓÒ×ÓÊ÷ 
+	Tree pre=NULL;//ç”¨æ¥å­˜å‚¨è¾“å‡ºè¿‡çš„å·¦å³å­æ ‘ 
 	Push(S,p);
 	while(!StackEmpty(S)){
 		GetTop(S,p);
-		//ÅĞ¶Ïµ±Ç°½ÚµãµÄ×óÓÒ×ÓÊ÷ÊÇ·ñÎª¿Õ»òÕß×óÓÒ×ÓÊ÷ÊÇ·ñÒÑ½øĞĞÊä³ö£¬ÈôÊÇ£¬ÔòÊä³ö½ÚµãµÄdata 
+		//åˆ¤æ–­å½“å‰èŠ‚ç‚¹çš„å·¦å³å­æ ‘æ˜¯å¦ä¸ºç©ºæˆ–è€…å·¦å³å­æ ‘æ˜¯å¦å·²è¿›è¡Œè¾“å‡ºï¼Œè‹¥æ˜¯ï¼Œåˆ™è¾“å‡ºèŠ‚ç‚¹çš„data 
 		if((p->lchild==NULL&&p->rchild==NULL)||(pre!=NULL&&(Equal(p->lchild,pre)||Equal(p->rchild,pre)))){
 			Pop(S,p);
 			PrintTree(p);
 			pre=p;
 		}else{
-			//Èô²»ÊÇ£¬¾Í±éÀúÆä×óÓÒ×ÓÊ÷ 
+			//è‹¥ä¸æ˜¯ï¼Œå°±éå†å…¶å·¦å³å­æ ‘ 
 			if(p->rchild!=NULL)
 			Push(S,p->rchild);
 			if(p->lchild!=NULL)
@@ -150,14 +150,14 @@ Status PostOrder(Tree p){
   
 int main(){
 	Tree T;
-	printf("ÏÈĞò³õÊ¼»¯¶ş²æÊ÷\n"); 
+	printf("å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘\n"); 
 	CreatTree(T);
-	printf("ÏÈĞòÊä³ö¶ş²æÊ÷\n");
+	printf("å…ˆåºè¾“å‡ºäºŒå‰æ ‘\n");
 	PreOrder(T);
 	printf("\n");
-	printf("ÖĞĞòÊä³ö¶ş²æÊ÷\n");
+	printf("ä¸­åºè¾“å‡ºäºŒå‰æ ‘\n");
 	InOrder(T);
 	printf("\n");
-	printf("ºóĞòÊä³ö¶ş²æÊ÷\n");
+	printf("ååºè¾“å‡ºäºŒå‰æ ‘\n");
 	PostOrder(T);
 }
