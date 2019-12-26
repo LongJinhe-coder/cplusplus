@@ -14,10 +14,10 @@ TElemType data;
 struct BiTNode *lchild,*rchild;
 }BiTNode,*BiTree;
 
-//ÏÈĞòÊäÈë¶ş²æÊ÷ÖĞ½ÚµãµÄÖµ 
+//å…ˆåºè¾“å…¥äºŒå‰æ ‘ä¸­èŠ‚ç‚¹çš„å€¼ 
 Status CreatBiTree(BiTree &T){
 	TElemType ch;
-//	printf("°´ÏÈĞò³õÊ¼»¯¶ş²æÊ÷£¡\n");
+//	printf("æŒ‰å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘ï¼\n");
 //	scanf("%c",&ch);
 	ch=getchar(); 
 	if(ch=='#') T=NULL;
@@ -34,7 +34,7 @@ Status PrintElement(TElemType e){
 	printf("%c",e);
 	return OK;
 }
-//ÏÈĞòÊä³ö¶ş²æÊ÷ 
+//å…ˆåºè¾“å‡ºäºŒå‰æ ‘ 
 Status PreOrder(BiTree T){
 	if(T){
 		if(PrintElement(T->data))
@@ -44,7 +44,7 @@ Status PreOrder(BiTree T){
 	}else return OK; 
 	}
 
-//ÖĞĞòÊä³ö¶ş²æÊ÷ 
+//ä¸­åºè¾“å‡ºäºŒå‰æ ‘ 
 Status InOrder(BiTree T){
 	if(T){
 		if(InOrder(T->lchild))
@@ -54,7 +54,7 @@ Status InOrder(BiTree T){
 	}else return OK; 
 	}
 	
-	//ºóĞòÊä³ö¶ş²æÊ÷ 
+	//ååºè¾“å‡ºäºŒå‰æ ‘ 
 Status PostOrder(BiTree T){
 	if(T){
 		if(PostOrder(T->lchild))
@@ -67,14 +67,14 @@ Status PostOrder(BiTree T){
 	
 	int main(){
 		BiTNode *T=(BiTNode *)malloc(sizeof(BiTNode));
-		printf("°´ÏÈĞò³õÊ¼»¯¶ş²æÊ÷£¡\n");
+		printf("æŒ‰å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘ï¼\n");
 		CreatBiTree(T);
-		printf("ÏÈĞòÊä³ö¶ş²æÊ÷:\n");
+		printf("å…ˆåºè¾“å‡ºäºŒå‰æ ‘:\n");
 		PreOrder(T);
 		printf("\n");
-		printf("ÖĞĞòÊä³ö¶ş²æÊ÷:\n");
+		printf("ä¸­åºè¾“å‡ºäºŒå‰æ ‘:\n");
 		InOrder(T);
 	    printf("\n");
-		printf("ºóĞòÊä³ö¶ş²æÊ÷:\n");
+		printf("ååºè¾“å‡ºäºŒå‰æ ‘:\n");
 		PostOrder(T);
 	}

@@ -2,24 +2,24 @@
 #include<stdlib.h>
 #include<string.h>
 
-//¶¨Òå·ûºÅ³£Á¿ 
+//å®šä¹‰ç¬¦å·å¸¸é‡ 
 #define LIST_INIT_SIZE 50
 #define LISTINCREMENT 10
 #define OK 1
 #define ERROR 0
 #define OVERFLOW -2
 
-//¶¨ÒåÔªËØÀàĞÍ
+//å®šä¹‰å…ƒç´ ç±»å‹
 typedef int ElemType;
 
-//¶¨ÒåË³Ğò±íÀàĞÍ 
+//å®šä¹‰é¡ºåºè¡¨ç±»å‹ 
 typedef struct{
 ElemType *elem;
 int lenth;
 int listsize;
 }SqList;
 
-//¹¹ÔìË³Ğò±í 
+//æ„é€ é¡ºåºè¡¨ 
 int InitList(SqList *L)
 {
 	L->elem=(ElemType *)malloc(LIST_INIT_SIZE*sizeof(ElemType));
@@ -29,11 +29,11 @@ int InitList(SqList *L)
 	return OK;
 }
 
-//³õÊ¼»¯Ë³Ğò±í 
+//åˆå§‹åŒ–é¡ºåºè¡¨ 
 void InputList(SqList *L)
 {
 	int n,k,x;
-	printf("ÇëÊäÈë³õÊ¼»¯ÔªËØµÄÊıÄ¿n\n");
+	printf("è¯·è¾“å…¥åˆå§‹åŒ–å…ƒç´ çš„æ•°ç›®n\n");
 	scanf("%d",&n);
 
 	for(k=1;k<=n;k++){ 
@@ -43,14 +43,14 @@ void InputList(SqList *L)
 	
 		L->listsize+=LISTINCREMENT;
 	}
-	printf("ÇëÊäÈëÔªËØ\n");
+	printf("è¯·è¾“å…¥å…ƒç´ \n");
 	scanf("%d",&x);
 	L->elem[k-1]=x;
 	L->lenth++;
 	}
 } 
 
-//»ñÈ¡Ë³Ğò±íµÚi¸öÔªËØ 
+//è·å–é¡ºåºè¡¨ç¬¬iä¸ªå…ƒç´  
 ElemType GetList(SqList *L,int i)
 { 
 	if(i<0||i>L->lenth)
@@ -59,7 +59,7 @@ ElemType GetList(SqList *L,int i)
 		return L->elem[i-1];
 }
 
-//¶¨Î»Ä¿±êÔÚ±íÖĞµÄÎ»ÖÃ 
+//å®šä½ç›®æ ‡åœ¨è¡¨ä¸­çš„ä½ç½® 
 int LocateListElem(SqList *L,ElemType e)
 {
 	int k=1;
@@ -75,7 +75,7 @@ int LocateListElem(SqList *L,ElemType e)
 		return k;
 }
 
-//ÔÚË³Ğò±íµÚi Î»ÖÃ²åÈëÔªËØ 
+//åœ¨é¡ºåºè¡¨ç¬¬i ä½ç½®æ’å…¥å…ƒç´  
 int InsertList(SqList *L,int i,ElemType e)
 {
 	int k;
@@ -95,7 +95,7 @@ int InsertList(SqList *L,int i,ElemType e)
 	return OK;
 }
 
-//É¾³ıË³Ğò±íµÚi¸öÔªËØ 
+//åˆ é™¤é¡ºåºè¡¨ç¬¬iä¸ªå…ƒç´  
 int DeleteList(SqList *L,int i)
 {
 	int k;
@@ -107,7 +107,7 @@ int DeleteList(SqList *L,int i)
 	return OK;
 }
 
-//¸øË³Ğò±íÅÅĞò 
+//ç»™é¡ºåºè¡¨æ’åº 
 int PaiXULIist(SqList *L)
 {
 	int k,i,x;
@@ -124,7 +124,7 @@ int PaiXULIist(SqList *L)
 	return OK;
 }
 
-//²éÕÒË³Ğò±í×îÖµ 
+//æŸ¥æ‰¾é¡ºåºè¡¨æœ€å€¼ 
 void FindMaxMinList(SqList *L)
 {
 	int k,i,max,min;
@@ -140,11 +140,11 @@ void FindMaxMinList(SqList *L)
 		if(L->elem[i]>L->elem[i+1])
 			min=L->elem[i+1];
 	}
-			printf("×î´óÔªËØÎª%d\n",max);
-			printf("×îĞ¡ÔªËØÎª%d\n",min);
+			printf("æœ€å¤§å…ƒç´ ä¸º%d\n",max);
+			printf("æœ€å°å…ƒç´ ä¸º%d\n",min);
 }
  
-//¸øË³Ğò±íÄæÖÃ 
+//ç»™é¡ºåºè¡¨é€†ç½® 
 void NiZhiList(SqList *L)
 {
 	int k=L->lenth/2,i,x;
@@ -156,7 +156,7 @@ void NiZhiList(SqList *L)
 	}
 }
 
-//Ë³Ğò±íÊä³ö 
+//é¡ºåºè¡¨è¾“å‡º 
 void PrintList(SqList *L)
 {
 	int k;
@@ -174,30 +174,30 @@ int main()
    
     while(isRunning)  
     {  
-        printf("======Ë³Ğò±í²Ù×÷Ä¿Â¼=======\n");  
-        printf("1. ´´½¨Ò»¸ö¿ÕµÄË³Ğò±í\n");  
-        printf("2. ³õÊ¼»¯Ë³Ğò±í\n");  
-        printf("3. ²éÑ¯Ë³Ğò±íÄ³¸öÎ»ÖÃµÄÔªËØ\n");  
-        printf("4. ²éÑ¯ÔªËØÔÚË³Ğò±íÖĞµÄÎ»ÖÃ\n");  
-        printf("5. ÏòË³Ğò±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ\n");  
-        printf("6. É¾³ıË³Ğò±íÖ¸¶¨Î»ÖÃµÄÔªËØ\n");  
-        printf("7. ¸øË³Ğò±íÅÅĞò\n");  
-        printf("8. ÍË³ö\n");  
-        printf("9. ²éÕÒË³Ğò±í×îÖµ\n");  
-        printf("10. ¸øË³Ğò±íÄæÖÃ\n");  
-        printf("11. Êä³öË³Ğò±íµÄÈ«²¿ÔªËØ\n"); 
+        printf("======é¡ºåºè¡¨æ“ä½œç›®å½•=======\n");  
+        printf("1. åˆ›å»ºä¸€ä¸ªç©ºçš„é¡ºåºè¡¨\n");  
+        printf("2. åˆå§‹åŒ–é¡ºåºè¡¨\n");  
+        printf("3. æŸ¥è¯¢é¡ºåºè¡¨æŸä¸ªä½ç½®çš„å…ƒç´ \n");  
+        printf("4. æŸ¥è¯¢å…ƒç´ åœ¨é¡ºåºè¡¨ä¸­çš„ä½ç½®\n");  
+        printf("5. å‘é¡ºåºè¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ \n");  
+        printf("6. åˆ é™¤é¡ºåºè¡¨æŒ‡å®šä½ç½®çš„å…ƒç´ \n");  
+        printf("7. ç»™é¡ºåºè¡¨æ’åº\n");  
+        printf("8. é€€å‡º\n");  
+        printf("9. æŸ¥æ‰¾é¡ºåºè¡¨æœ€å€¼\n");  
+        printf("10. ç»™é¡ºåºè¡¨é€†ç½®\n");  
+        printf("11. è¾“å‡ºé¡ºåºè¡¨çš„å…¨éƒ¨å…ƒç´ \n"); 
         printf("===========================\n");  
-        printf("\nÊäÈë1-11,Ñ¡Ôñ²Ù×÷:");  
+        printf("\nè¾“å…¥1-11,é€‰æ‹©æ“ä½œ:");  
         scanf("%d", &choice);  
-        printf("\nÄãÑ¡ÔñµÄ¹¦ÄÜºÅÎª:%d\n", choice);  
+        printf("\nä½ é€‰æ‹©çš„åŠŸèƒ½å·ä¸º:%d\n", choice);  
  
         switch(choice)  
         {  
             case 1:
                 if (InitList(pl))
-                    printf("\n´´½¨Ë³Ğò±í³É¹¦!\n\n");    
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨æˆåŠŸ!\n\n");    
                 else
-                    printf("\n´´½¨Ë³Ğò±íÊ§°Ü!\n\n");
+                    printf("\nåˆ›å»ºé¡ºåºè¡¨å¤±è´¥!\n\n");
 
                 break;
             case 2:
@@ -210,9 +210,9 @@ int main()
                 scanf("%d", &i);
                 elem = GetList(pl, i);
                 if (elem)
-                    printf("µÚ%d¸öÔªËØÊÇ%d\n\n", i, elem);  
+                    printf("ç¬¬%dä¸ªå…ƒç´ æ˜¯%d\n\n", i, elem);  
                 else
-                    printf("ÊäÈëµÄÎ»ÖÃ²»ºÏ·¨!");
+                    printf("è¾“å…¥çš„ä½ç½®ä¸åˆæ³•!");
            
                 break;
             case 4:
@@ -231,23 +231,23 @@ int main()
                  printf("data=");
                 scanf("%d", &data);
                 if (InsertList(pl, i, data))
-                    printf("\nÊı¾İ²åÈë³É¹¦!\n\n");
+                    printf("\næ•°æ®æ’å…¥æˆåŠŸ!\n\n");
                 else
-                    printf("\nÊı¾İ²åÈëÊ§°Ü!\n\n");
+                    printf("\næ•°æ®æ’å…¥å¤±è´¥!\n\n");
 
                 break;
             case 6:
                 printf("i=");
                 scanf("%d", &i);
                 if (DeleteList(pl, i))
-                    printf("\nÊı¾İÉ¾³ı³É¹¦!\n\n");
+                    printf("\næ•°æ®åˆ é™¤æˆåŠŸ!\n\n");
                 else
-                    printf("\nÊı¾İÉ¾³ıÊ§°Ü!\n\n");
+                    printf("\næ•°æ®åˆ é™¤å¤±è´¥!\n\n");
 
                 break;
             case 7:
                 PaiXULIist(pl);
-                printf("\nË³Ğò±íÒÑ¾­ÅÅĞò!\n\n");
+                printf("\né¡ºåºè¡¨å·²ç»æ’åº!\n\n");
 
                 break;
             case 8:
@@ -259,7 +259,7 @@ int main()
                 break;
 			case 10:
                 NiZhiList(pl);
-				 printf("\nÊı¾İ±íÒÑ¾­ÄæÖÃ!\n\n");
+				 printf("\næ•°æ®è¡¨å·²ç»é€†ç½®!\n\n");
 
                 break;
             case 11:

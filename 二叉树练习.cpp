@@ -57,10 +57,10 @@
 //int main(){
 //	BiTree T=(TNode *)malloc(sizeof(TNode));
 //	int count=0;
-//		printf("°´ÏÈĞò³õÊ¼»¯¶ş²æÊ÷£¡\n");
+//		printf("æŒ‰å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘ï¼\n");
 //	CreatTree(T);
 //	PreOrder(T,count);
-//	printf("Ò¶×Ó½ÚµãµÄ¸öÊıÊÇ%d",count);
+//	printf("å¶å­èŠ‚ç‚¹çš„ä¸ªæ•°æ˜¯%d",count);
 //}
 #include<stdio.h>
 #include<stdlib.h>
@@ -140,18 +140,18 @@ Status Depth(BiTree T){
 
 int main(){
 	BiTree T=new TNode;
-	printf("Çë°´ÏÈĞò³õÊ¼»¯¶ş²æÊ÷£¡\n");
+	printf("è¯·æŒ‰å…ˆåºåˆå§‹åŒ–äºŒå‰æ ‘ï¼\n");
 	CreateTree(T);
-//	 printf("ÏÈĞòÊä³öÈçÏÂ£º");
+//	 printf("å…ˆåºè¾“å‡ºå¦‚ä¸‹ï¼š");
 //	 PreOrder(T);
 //	 printf("\n");
-//	  printf("ÖĞĞòÊä³öÈçÏÂ£º");
+//	  printf("ä¸­åºè¾“å‡ºå¦‚ä¸‹ï¼š");
 //	 InOrder(T);
 //	 printf("\n");
-//	  printf("ºóĞòÊä³öÈçÏÂ£º");
+//	  printf("ååºè¾“å‡ºå¦‚ä¸‹ï¼š");
 //	 PostOrder(T);
 //	 printf("\n");
-printf("¶ş²æÊ÷Éî¶ÈÎª£º");
+printf("äºŒå‰æ ‘æ·±åº¦ä¸ºï¼š");
 int depth=Depth(T);
   printf("%d",depth);
 }

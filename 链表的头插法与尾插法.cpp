@@ -13,7 +13,7 @@ typedef struct LNode{
 	ElemType data;
 	struct LNode *next;
 }LNode,*LinkList;
-//��ͷ�ڵ�ͷ�巨 
+//带头节点头插法 
 Status PreCreatList(LinkList &L,int lenth){
 	L=(LinkList)malloc(sizeof(LNode));
 	L->next=NULL;
@@ -25,7 +25,7 @@ Status PreCreatList(LinkList &L,int lenth){
 	}
 	return OK;	
 }
-//��ͷ�ڵ�β�巨 
+//带头节点尾插法 
 Status PostCreatList(LinkList &L,int lenth){
 	 //L=(LinkList)malloc(sizeof(LNode));
 	 L=new LNode;

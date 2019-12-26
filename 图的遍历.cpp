@@ -18,27 +18,27 @@ int visited[max];
 
 int k=0,x=0;
 //	int index;
-//	int v;//¿ªÊ¼·ÃÎÊµÄ½áµãÎ»ÖÃ 
+//	int v;//å¼€å§‹è®¿é—®çš„ç»“ç‚¹ä½ç½® 
 typedef struct ArcNode{
-	int firstvex;//¸Ã»¡ÒÀ¸½µÄ¶¥µãÎ»ÖÃ 
-	int adjvex;//¸Ã»¡Ö¸ÏòµÄ¶¥µãÎ»ÖÃ
-	struct ArcNode *nextarc;//Ö¸ÏòÏÂÒ»Ìõ»¡µÄÖ¸Õë 
+	int firstvex;//è¯¥å¼§ä¾é™„çš„é¡¶ç‚¹ä½ç½® 
+	int adjvex;//è¯¥å¼§æŒ‡å‘çš„é¡¶ç‚¹ä½ç½®
+	struct ArcNode *nextarc;//æŒ‡å‘ä¸‹ä¸€æ¡å¼§çš„æŒ‡é’ˆ 
 }ArcNode;
 
 typedef struct VNode{
-	VertexType data;//¶¥µãĞÅÏ¢
-	ArcNode *firstarc;//µÚÒ»ÌõÒÀ¸½ÓÚ¸Ã¶¥µãµÄ»¡ 
+	VertexType data;//é¡¶ç‚¹ä¿¡æ¯
+	ArcNode *firstarc;//ç¬¬ä¸€æ¡ä¾é™„äºè¯¥é¡¶ç‚¹çš„å¼§ 
 }VNode,AdjList[max];
 
 typedef struct ALGraph{
 	AdjList vertices;
-	int vexnum,arcnum;//Í¼µÄ¶¥µãÊıºÍ±ßÊı 
+	int vexnum,arcnum;//å›¾çš„é¡¶ç‚¹æ•°å’Œè¾¹æ•° 
 }ALGraph;
 
 
 typedef struct QNode{
-	VNode data;//½èÖúÕ»À´´æ´¢¶¥µã£¬ÓÃÓÚ¹ã¶ÈÓÅÏÈËÑË÷ 
-	ArcNode arc;//½èÖúÕ»À´´æ´¢»¡£¬ÓÃÓÚ¼ÇÂ¼Éú³ÉÊ÷±ß¼¯ 
+	VNode data;//å€ŸåŠ©æ ˆæ¥å­˜å‚¨é¡¶ç‚¹ï¼Œç”¨äºå¹¿åº¦ä¼˜å…ˆæœç´¢ 
+	ArcNode arc;//å€ŸåŠ©æ ˆæ¥å­˜å‚¨å¼§ï¼Œç”¨äºè®°å½•ç”Ÿæˆæ ‘è¾¹é›† 
 	struct QNode *next;
 }QNode,*QueuePtr;
 
@@ -46,7 +46,7 @@ typedef struct {
 	QueuePtr front;
 	QueuePtr rear;
 }LinkQueue;
-//´´½¨¿Õ¶ÓÁĞ 
+//åˆ›å»ºç©ºé˜Ÿåˆ— 
 Status InitQueue(LinkQueue &Q){
 	Q.front=Q.rear=new QNode;
 	//Q=(QueuePtr)malloc(sizeof(QNode));
@@ -59,7 +59,7 @@ Status EnQueue(LinkQueue &Q,VNode e){
 	QueuePtr p=new QNode;
 	//QueuePtr p=(QueuePtr)malloc(sizeof(QNode));
 	if(!p)exit(OVERFLOW);
-	p->data=e; p->next=NULL;//cout<<"ÈëÕ»ÔªËØ:"<<e.data;
+	p->data=e; p->next=NULL;//cout<<"å…¥æ ˆå…ƒç´ :"<<e.data;
 	Q.rear->next=p;
 	Q.rear=p;
 	return OK;
@@ -69,7 +69,7 @@ Status EnQueue2(LinkQueue &Q,ArcNode e){
 	QueuePtr p=new QNode;
 	//QueuePtr p=(QueuePtr)malloc(sizeof(QNode));
 	if(!p)exit(OVERFLOW);
-	p->arc=e; p->next=NULL;//cout<<"ÈëÕ»ÔªËØ:"<<e.data;
+	p->arc=e; p->next=NULL;//cout<<"å…¥æ ˆå…ƒç´ :"<<e.data;
 	Q.rear->next=p;
 	Q.rear=p;
 	return OK;
@@ -83,13 +83,13 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 		return ERROR;
 	}
 	QueuePtr p=Q.front->next;
-	e=p->data;	//cout<<"³öÕ»ÔªËØ"<<e.data;
+	e=p->data;	//cout<<"å‡ºæ ˆå…ƒç´ "<<e.data;
 	Q.front->next=p->next;
 	if(Q.rear==p)Q.rear=Q.front;
 	free(p);
 	return OK;
 }
-//¸øµ±Ç°¶¥µã¶¨Î» 
+//ç»™å½“å‰é¡¶ç‚¹å®šä½ 
  int LocateVex(ALGraph G,VertexType v){
  	for(int i=0;i<G.vexnum;i++){
  		if(v==G.vertices[i].data)
@@ -98,48 +98,48 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 return OK;
  }
  
- //´´½¨ÁÚ½Ó±í´æ´¢½á¹¹ 
+ //åˆ›å»ºé‚»æ¥è¡¨å­˜å‚¨ç»“æ„ 
  Status CreateList(ALGraph &G){
  	int i,j;
  	ArcNode *pi,*pj;
  	VertexType v1,v2;
  	
- 	cout<<"ÇëÊäÈëÍ¼µÄ¶¥µãÊı"<<endl;
+ 	cout<<"è¯·è¾“å…¥å›¾çš„é¡¶ç‚¹æ•°"<<endl;
  	cin>>G.vexnum;
  	if(G.vexnum>max){
- 		cout<<"¶¥µã³¬±ê£¡£¡£¡";
+ 		cout<<"é¡¶ç‚¹è¶…æ ‡ï¼ï¼ï¼";
 		 exit(OVERFLOW); 
 	 }
-	 cout<<"ÇëÊäÈëÍ¼µÄ±ßÊı"<<endl;
+	 cout<<"è¯·è¾“å…¥å›¾çš„è¾¹æ•°"<<endl;
  	cin>>G.arcnum;
- 	//¸øÃ¿Ò»¸ö½áµã¸³Öµ 
+ 	//ç»™æ¯ä¸€ä¸ªç»“ç‚¹èµ‹å€¼ 
  	for(int i=0;i<G.vexnum;i++){
- 		cout<<"ÇëÊäÈë¶¥µã"<<i+1<<"µÄdata"<<endl;
+ 		cout<<"è¯·è¾“å…¥é¡¶ç‚¹"<<i+1<<"çš„data"<<endl;
  		cin>>G.vertices[i].data;
  		G.vertices[i].firstarc=NULL;
 	 }
-	 //Í¨¹ı±éÀú±ßÀ´½¨Á¢ÁÚ½Ó±í 
+	 //é€šè¿‡éå†è¾¹æ¥å»ºç«‹é‚»æ¥è¡¨ 
 	 for(int k=0;k<G.arcnum;k++){
-	 		cout<<"ÇëÊäÈëµÚ"<<k+1<<"Ìõ±ßµÄÁ½¸ö¶¥µã"<<endl;
+	 		cout<<"è¯·è¾“å…¥ç¬¬"<<k+1<<"æ¡è¾¹çš„ä¸¤ä¸ªé¡¶ç‚¹"<<endl;
 	 		cin>>v1>>v2;
-	 		//ÕÒµ½Óë±ßÏà½ÓµÄÁ½¶¥µãÎ»ÖÃ 
+	 		//æ‰¾åˆ°ä¸è¾¹ç›¸æ¥çš„ä¸¤é¡¶ç‚¹ä½ç½® 
 	 		i=LocateVex(G,v1);
 	 		j=LocateVex(G,v2);
 	 		if(!(pi=new ArcNode)) exit(OVERFLOW);
-	 		pi->firstvex=i;//pi»¡ÒÀ¸½µÄ¶¥µãiÎ»ÖÃ 
-	 		pi->adjvex=j;//pi»¡Ö¸Ïò¶¥µãj 
-	 		pi->nextarc=G.vertices[i].firstarc;//Í·²å·¨´´½¨Á´±í 
+	 		pi->firstvex=i;//piå¼§ä¾é™„çš„é¡¶ç‚¹iä½ç½® 
+	 		pi->adjvex=j;//piå¼§æŒ‡å‘é¡¶ç‚¹j 
+	 		pi->nextarc=G.vertices[i].firstarc;//å¤´æ’æ³•åˆ›å»ºé“¾è¡¨ 
 	 		G.vertices[i].firstarc=pi;
 	 		
 	 			if(!(pj=new ArcNode)) exit(OVERFLOW);
-	 			pj->firstvex=j;//pj»¡ÒÀ¸½µÄ¶¥µãjÎ»ÖÃ 
-	 			pj->adjvex=i;//pj»¡Ö¸Ïò¶¥µãi 
-	 		pj->nextarc=G.vertices[j].firstarc;//Í·²å·¨´´½¨Á´±í 
+	 			pj->firstvex=j;//pjå¼§ä¾é™„çš„é¡¶ç‚¹jä½ç½® 
+	 			pj->adjvex=i;//pjå¼§æŒ‡å‘é¡¶ç‚¹i 
+	 		pj->nextarc=G.vertices[j].firstarc;//å¤´æ’æ³•åˆ›å»ºé“¾è¡¨ 
 	 		G.vertices[j].firstarc=pj;
 	 }
 	 return OK;
  }
- //Éî¶ÈÓÅÏÈËÑË÷ 
+ //æ·±åº¦ä¼˜å…ˆæœç´¢ 
  void DFS(ALGraph G,int v,LinkQueue &Q){
  	ArcNode *p;
 	int w;
@@ -147,13 +147,13 @@ Status DeQueue(LinkQueue &Q,VNode &e){
  	visited[v]=true;
  	cout<<G.vertices[v].data<<" ";
  
- 	//Ñ­»·´ÓµÚÒ»¸öÁÚ½Óµã¿ªÊ¼£¬µ½×îºóÒ»¸ö½áÊø 
+ 	//å¾ªç¯ä»ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹å¼€å§‹ï¼Œåˆ°æœ€åä¸€ä¸ªç»“æŸ 
  	for(p=G.vertices[v].firstarc;p;p=p->nextarc){
  		
  		w=p->adjvex;
  		if(!visited[w]){
- 			EnQueue2(Q,*p);//µ±Ç°»¡½ø¶ÓÁĞ 
- 			//µİ¹é±éÀú 
+ 			EnQueue2(Q,*p);//å½“å‰å¼§è¿›é˜Ÿåˆ— 
+ 			//é€’å½’éå† 
  		DFS(G,w,Q);
 		 }
  		
@@ -163,10 +163,10 @@ Status DeQueue(LinkQueue &Q,VNode &e){
  void DFSTravers(ALGraph G,int v,LinkQueue &Q){
  	
  	if(v<1||v>G.vexnum){
- 		cout<<"vµÄÎ»ÖÃ²»ºÏÀí";
+ 		cout<<"vçš„ä½ç½®ä¸åˆç†";
 		 exit(OVERFLOW); 
 	 }
-	 //½«Ã¿Ò»¸ö½áµã·ÃÎÊÊı×éÉèÎªfalse 
+	 //å°†æ¯ä¸€ä¸ªç»“ç‚¹è®¿é—®æ•°ç»„è®¾ä¸ºfalse 
  	for(int i=0;i<G.vexnum;i++){
  		visited[i]=false;
 	 }
@@ -174,7 +174,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 for(int i=0;i<G.vexnum;i++){
 	 	if(!visited[v-1])
 	 	DFS(G,v-1,Q);
-	 	//ÓÃÓÚ·ÇÁªÍ¨Í¼ 
+	 	//ç”¨äºéè”é€šå›¾ 
 	 	for(int j=0;j<G.vexnum;j++){
 	 		if(!visited[j]){
 	 			v=j+1;
@@ -184,7 +184,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 }
  } 
 
- //¹ã¶ÈÓÅÏÈËÑË÷ 
+ //å¹¿åº¦ä¼˜å…ˆæœç´¢ 
  void BFSTraverse(ALGraph G,LinkQueue &Q,LinkQueue &Q2,int v){
  	ArcNode *p;
  	VNode e;
@@ -194,20 +194,20 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 	 }
 	 for(int i=0;i<G.vexnum;i++){
 	 	if(!visited[v-1]){
-	 		//·ÃÎÊµ½µÄ½áµãÈë¶ÓÁĞ 
+	 		//è®¿é—®åˆ°çš„ç»“ç‚¹å…¥é˜Ÿåˆ— 
 	 		EnQueue(Q,G.vertices[v-1]);visited[v-1]=true; 
 	 		cout<<G.vertices[v-1].data<<" ";
  			
 	 		while(Q.front!=Q.rear){
-	 			//½áµã³ö¶ÓÁĞ£¬²¢½«½áµãĞÅÏ¢¸³Öµ¸øe´«³öÀ´ 
+	 			//ç»“ç‚¹å‡ºé˜Ÿåˆ—ï¼Œå¹¶å°†ç»“ç‚¹ä¿¡æ¯èµ‹å€¼ç»™eä¼ å‡ºæ¥ 
 	 			DeQueue(Q,e);
 	 					 
-	 		//cout<<"³ö¶ÓÁĞÔªËØ"<<e.data;
-	 		//±éÀúÃ¿¸ö½áµãµÄÏàÁÚ½áµã 
+	 		//cout<<"å‡ºé˜Ÿåˆ—å…ƒç´ "<<e.data;
+	 		//éå†æ¯ä¸ªç»“ç‚¹çš„ç›¸é‚»ç»“ç‚¹ 
 	 			for(p=e.firstarc;p;p=p->nextarc){
 	 			
 	 		if(!visited[p->adjvex]){
-	 			EnQueue2(Q2,*p);//µ±Ç°»¡½ø¶ÓÁĞ 
+	 			EnQueue2(Q2,*p);//å½“å‰å¼§è¿›é˜Ÿåˆ— 
 	 			EnQueue(Q,G.vertices[p->adjvex]);visited[p->adjvex]=true;
 	 			cout<<G.vertices[p->adjvex].data<<" ";
  				
@@ -217,7 +217,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 			 }
 	 		
 		 }
-		 //ÓÃÓÚ±éÀú·ÇÁªÍ¨Í¼ 
+		 //ç”¨äºéå†éè”é€šå›¾ 
 		 for(int j=0;j<G.vexnum;j++){
 	 		if(!visited[j]){
 	 			v=j+1;
@@ -229,7 +229,7 @@ Status DeQueue(LinkQueue &Q,VNode &e){
 
 	 
  }
- //´òÓ¡Éú³ÉÊ÷±ß¼¯ 
+ //æ‰“å°ç”Ÿæˆæ ‘è¾¹é›† 
  void PrintArc(ALGraph G,LinkQueue Q){
  	while(Q.front!=	Q.rear){
  		cout<<G.vertices[Q.front->next->arc.firstvex].data<<"--"
@@ -250,16 +250,16 @@ Status DeQueue(LinkQueue &Q,VNode &e){
  	CreateList(G);
  
  int v;
- 	cout<<"ÇëÊäÈë¿ªÊ¼µÄ½áµãÎ»ÖÃv,×¢Òâ1<=v<="<<G.vexnum<<endl;
+ 	cout<<"è¯·è¾“å…¥å¼€å§‹çš„ç»“ç‚¹ä½ç½®v,æ³¨æ„1<=v<="<<G.vexnum<<endl;
  	cin>>v;
- 	cout<<"Éî¶ÈÓÅÏÈËÑË÷Ë³Ğò£º";
+ 	cout<<"æ·±åº¦ä¼˜å…ˆæœç´¢é¡ºåºï¼š";
  	DFSTravers(G,v,q1);
- 	cout<<endl<<"Éî¶ÈÓÅÏÈËÑË÷Éú³ÉÊ÷±ß¼¯£º";
+ 	cout<<endl<<"æ·±åº¦ä¼˜å…ˆæœç´¢ç”Ÿæˆæ ‘è¾¹é›†ï¼š";
  	PrintArc(G,q1);
  	//DFSPrint();
- 	cout<<endl<<"¹ã¶ÈÓÅÏÈËÑË÷Ë³Ğò£º";
+ 	cout<<endl<<"å¹¿åº¦ä¼˜å…ˆæœç´¢é¡ºåºï¼š";
  	BFSTraverse(G,q,q2,v);
- 	cout<<endl<<"¹ã¶ÈÓÅÏÈËÑË÷Éú³ÉÊ÷±ß¼¯£º";
+ 	cout<<endl<<"å¹¿åº¦ä¼˜å…ˆæœç´¢ç”Ÿæˆæ ‘è¾¹é›†ï¼š";
  	PrintArc(G,q2);
  	//BFSPrint();
  } 

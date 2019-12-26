@@ -2,21 +2,21 @@
 #include<stdlib.h>
 #include<string.h>
 
-//¶¨Òå·ûºÅ³£Á¿ 
+//å®šä¹‰ç¬¦å·å¸¸é‡ 
 #define LIST_INIT_SIZE 50
 #define LISTINCREMENT 10
 #define OK 1
 #define ERROR 0
 #define OVERFLOW -2
 
-//¶¨ÒåÔªËØÀàĞÍ
+//å®šä¹‰å…ƒç´ ç±»å‹
 typedef int ElemType;
 
 typedef struct LNode{
 	ElemType data;
 	struct LNode  *next;
 }LNode,*LinkList;
-//Î²½Ó·¨´´½¨Ñ­»·Á´±í 
+//å°¾æ¥æ³•åˆ›å»ºå¾ªç¯é“¾è¡¨ 
 void CreateList(LinkList &L,int n){
 	int i;
 	LinkList r,p; 
@@ -29,12 +29,12 @@ void CreateList(LinkList &L,int n){
 			p->next=NULL;
 			p->data=i+1;
 		r->next=p;
-		//¸ü»»Î²Ö¸Õë 
+		//æ›´æ¢å°¾æŒ‡é’ˆ 
 		r=p;
 		}
-		//×îºóÒ»¸ö½Úµã 
+		//æœ€åä¸€ä¸ªèŠ‚ç‚¹ 
 		else if(i==n-1){
-			//×îºóÒ»¸ö½ÚµãÖ¸ÕëÖ¸ÏòµÚÒ»¸ö½Úµã 
+			//æœ€åä¸€ä¸ªèŠ‚ç‚¹æŒ‡é’ˆæŒ‡å‘ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ 
 			p->next=L;
 			p->data=n;
 			r->next=p;
@@ -43,7 +43,7 @@ void CreateList(LinkList &L,int n){
 		
 	}
 }
-//Êä³ö½ÚµãµÄ±àºÅ 
+//è¾“å‡ºèŠ‚ç‚¹çš„ç¼–å· 
 void PrintList(LinkList &L,int n)
 {
 LinkList p;p=L;
@@ -57,31 +57,31 @@ for(i=1;i<=n;i++){
 void Run(LinkList &L,int n){
 	LinkList p,q;p=L;
 	int i,j,m,k,r,x,a,passwardlist[n]; 
-	//ÓÃÊı×é passwardlistÀ´´æ´¢Ã¿Ò»¸ö½ÚµãµÄÃÜÂë 
+	//ç”¨æ•°ç»„ passwardlistæ¥å­˜å‚¨æ¯ä¸€ä¸ªèŠ‚ç‚¹çš„å¯†ç  
 	for(i=1;i<=n;i++){
-				printf("ÇëÊäÈë¶ÔÓ¦ÔªËØµÄÃÜÂë\n");
+				printf("è¯·è¾“å…¥å¯¹åº”å…ƒç´ çš„å¯†ç \n");
 		scanf("%d",&x);
 		passwardlist[i]=x;
 	}
-		printf("Ã¿Ò»¸öÔªËØ¶ÔÓ¦µÄÃÜÂëÎª\n");
+		printf("æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”çš„å¯†ç ä¸º\n");
 	for(i=1;i<=n;i++){
 				printf("%d ",passwardlist[i]);
 		
 	}
 		printf("\n");
-				printf("ÇëÊäÈëmµÄ³õÖµ=");
+				printf("è¯·è¾“å…¥mçš„åˆå€¼=");
 		scanf("%d",&m);
-		//ÎŞÍ·½áµã£¡£¡£¡£¡ 
+		//æ— å¤´ç»“ç‚¹ï¼ï¼ï¼ï¼ 
 		for(a=1;a<=m-2;a++){
 		p=p->next;
 	}
-		printf("ÔªËØ±àºÅÊä³öµÄ×îÖÕË³ĞòÎª£º\n");
+		printf("å…ƒç´ ç¼–å·è¾“å‡ºçš„æœ€ç»ˆé¡ºåºä¸ºï¼š\n");
 	q=p->next;r=q->data; p->next=q->next; 
 	printf("%d ",r);
  
 	free(q);
 	for(j=1;j<n;j++){
-	//µ±Ç°pÖ¸Ïò³öÁĞÊıµÄÇ°Ò»Î»£¨Ïàµ±ÓÚÍ·Ö¸Õë£©£¬ËùÒÔÑ­»·´ÎÊıºÍÇ°Ãæ²»Í¬ 
+	//å½“å‰pæŒ‡å‘å‡ºåˆ—æ•°çš„å‰ä¸€ä½ï¼ˆç›¸å½“äºå¤´æŒ‡é’ˆï¼‰ï¼Œæ‰€ä»¥å¾ªç¯æ¬¡æ•°å’Œå‰é¢ä¸åŒ 
 	for(k=1;k<=passwardlist[r]-1;k++){
 		p=p->next;
 	}
@@ -93,12 +93,12 @@ void Run(LinkList &L,int n){
 
 int main(){
 	int n;
-		printf("ÇëÊäÈë³õÊ¼ÔªËØ¸öÊın=");
+		printf("è¯·è¾“å…¥åˆå§‹å…ƒç´ ä¸ªæ•°n=");
 	scanf("%d",&n);
 	 	printf("\n");
 	 LNode *pl = (LNode *)malloc(sizeof(LNode));  
 	 CreateList(pl,n);
-	 	printf("Ã¿Ò»¸öÔªËØµÄ±àºÅÎª\n");
+	 	printf("æ¯ä¸€ä¸ªå…ƒç´ çš„ç¼–å·ä¸º\n");
 	PrintList(pl,n);
 		printf("\n");
 	Run(pl,n);
