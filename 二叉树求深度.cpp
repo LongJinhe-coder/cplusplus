@@ -69,5 +69,5 @@ int main(){
 	BiTree p=(BiTree)malloc(sizeof(BTNode));
 	CreatTree(p);
 	int depth=Depth(p);
-	printf("树的深度为%d",depth);
+	printf("閺嶆垹娈戝ǎ鍗炲娑擄拷%d",depth);
 }
