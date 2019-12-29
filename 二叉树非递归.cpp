@@ -77,6 +77,7 @@ Status Equal(Tree a,Tree b){
 //先序初始化二叉树 
 Status CreatTree(Tree &T){
 	TElemType ch;
+	
 	scanf("%c",&ch);
 
 	if(ch=='#') T=NULL;
