@@ -32,16 +32,16 @@ void InsertSort(SqList &L){
     
     for (int i = 2; i <=L.lenth ; i++)
     {   
-        int index;
+        
         if (L.r[i].key<L.r[i-1].key)
         {
             L.r[0].key=L.r[i].key;
-            for (int j = i-1; L.r[0].key<L.r[j].key; j--)
+            int j;
+            for ( j = i-1; L.r[0].key<L.r[j].key; j--)
             {
                 L.r[j+1].key=L.r[j].key;
-                index=j;
             }
-            L.r[index].key=L.r[0].key;
+            L.r[j].key=L.r[0].key;
         }
         
     }
