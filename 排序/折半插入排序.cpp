@@ -49,6 +49,7 @@ status BInsertSort(SqList &L){
         {
             L.r[j+1]=L.r[j];
         }
+        //插入位置是high+1
         L.r[high+1]=L.r[0];
         
     }
