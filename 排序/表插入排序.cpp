@@ -21,7 +21,7 @@ void CreatList(SLinkList &L){
     cout<<"输入初始化key"<<endl;
     for (int i = 1; i <= L.lenth; i++)
     {
-        cout<<"输入key";
+        // cout<<"输入key";
         cin>>L.r[i].key;
     }
     
