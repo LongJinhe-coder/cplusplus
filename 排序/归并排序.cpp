@@ -92,9 +92,9 @@ void Merge1(SqList &L,int low,int mid,int high){
         }
         
         int x=1;
-        for (int i = 0; i <=high-low; i++)
+        for (int i = low; i <=high; i++)
         {
-            L.r[low+i]=TR.r[x];
+            L.r[i]=TR.r[x];
             x++;
         }
         //  delete TR.r;
