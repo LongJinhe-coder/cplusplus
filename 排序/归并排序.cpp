@@ -118,7 +118,7 @@ void MSort(SqList SR,SqList &TR1,int s,int t){
 }
 
 void MSort1(SqList &L,int low,int high){
-    int mid=0;
+    int mid;
     if (low<high)
     {
         mid=(low+high)/2;
