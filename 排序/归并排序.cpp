@@ -55,7 +55,7 @@ void Merge(SqList SR,SqList &TR,int i,int m,int n){
 
 void Merge1(SqList &L,int low,int mid,int high){
         SqList TR;
-        char a[high-low+1];
+       
         int k;//数组TR的下标
         int left_low=low;
         int right_low=mid+1;
