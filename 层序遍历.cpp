@@ -14,7 +14,7 @@ typedef struct BiTNode{
 }*BiTree;
 
 
-status creattree(BiTree &T){
+status createtree(BiTree &T){
     elemtype ch;
     // cout<<"输入数据"<<endl;
     cin>>ch;
@@ -22,8 +22,8 @@ status creattree(BiTree &T){
     {
         T = new BiTNode;
         T->data=ch;
-        creattree(T->lchild);
-        creattree(T->rchild);
+        createtree(T->lchild);
+        createtree(T->rchild);
     }
     return OK;
 }
@@ -91,7 +91,7 @@ status orders(BiTree T,status &truth){
 int main(){
     BiTree t;
     cout<<"按前序初始化二叉树"<<endl;
-    creattree(t);
+    createtree(t);
     cout<<"层序遍历结果："<<endl;
     order(t);
     cout<<endl;
