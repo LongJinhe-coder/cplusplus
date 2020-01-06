@@ -56,9 +56,9 @@ void Bubble(SqList &L){
                 L.r[j+1]=L.r[0];
                 move=1;
             }
-            if(!move) return;
+            
         }
-        
+        if(!move) return;
     }
     
 }
