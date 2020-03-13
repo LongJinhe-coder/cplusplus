@@ -51,7 +51,7 @@ void generate(string local_path)
                 {
                     outfile << rand() << '\t';
                 }
-            }
+            } 
             outfile.close();
             clock_t end = clock();
             cout << (double)(end - start) / CLOCKS_PER_SEC << "s are spent on generating "
