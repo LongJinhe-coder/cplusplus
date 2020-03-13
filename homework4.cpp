@@ -113,10 +113,8 @@ void sort(string local_path)
                 allowedRows += INIT_N_ROW;
             }
         }
-        // cout<<"data2499="<<data[2499]<<endl;
-        // cout<<"data2500="<<data[2500]<<endl;
+ 
         inflie.close();
-        // cout<<"realRows="<<realRows<<endl;
         quick_sort(data, 0, realRows - 1);
         ofstream outflie(local_path + "cpp_" + std::to_string(i) + ".txt", ios::out);
         for (int j = 0; j < realRows; j++)
@@ -131,7 +129,6 @@ void sort(string local_path)
             }
         }
         outflie.close();
-        // cout<<data[realRows/2]<<endl;
         delete[] data;
         clock_t end = clock();
         cout << (double)(end - start) / CLOCKS_PER_SEC << "s has been spent on sorting "<<local_path
