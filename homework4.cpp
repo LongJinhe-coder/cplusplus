@@ -8,7 +8,7 @@ using namespace std;
 string local_path = "/home/longjinhe/Documents/cpp_document/homework4/";
 
 const int fileNum = 16;
-const int fileSize = 2048 * 2048;
+const int fileSize = 8192 * 8192;
 const int INIT_N_ROW = fileSize;
 int *expand(int *data, int rows, int more);
 

@@ -7,6 +7,9 @@
             "args": [
                 "-g",
                 "${file}",
+                // "-I","/home/longjinhe/Documents/cplusplus/homework5",
+                // "/home/longjinhe/Documents/cplusplus/homework5/main.cpp",
+                // "/home/longjinhe/Documents/cplusplus/homework5/string.cpp",
                 "-o",
                 "${workspaceFolder}/${fileBasenameNoExtension}"
             ],
