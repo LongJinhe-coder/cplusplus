@@ -43,6 +43,11 @@ int main() {
 	(str1 += str2) += str4;
 	cout << str1 << endl;
 
+	//v0.8
+	cout << "\nDemo of operator+=:(World!)" << endl;
+	str1+="World!";
+	cout << str1 << endl;
+
 	//v0.9
 	//cout << "\nDemo of operator[]:" << endl;
 	for (int i = 0; i < str1.size(); ++i) {
@@ -54,14 +59,13 @@ int main() {
 	cout << endl;
 	
     //v1.0 str1 == ”Hello!”;
-    hqu::string str5("Hello!");
-    cout << "\nDemo of operator==: str1==Hello" << endl;
-    if (str1==str5)
+    cout << "\nDemo of operator==: str1==Hello!" << endl;
+    if (str1=="Hello!")
     {
-        cout<<"str1=="<<str5<<endl;
+        cout<<"str1=="<<"Hello!"<<endl;
     }else
     {
-        cout<<"str1!="<<str5<<endl;
+        cout<<"str1!="<<"Hello!"<<endl;
     }
 
     //v1.0 str1 == ”Hello!”;
@@ -75,6 +79,7 @@ int main() {
     }
     
     //v1.1 读取文件后str5(Hello!)->”Hello!c++ world”
+	hqu::string str5("Hello!");
 	cout << "\nDemo of operator>>:" << endl;
     ifstream cin;
 	cin.open("/home/longjinhe/Documents/cpp_document/homework6/text.txt");

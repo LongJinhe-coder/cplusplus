@@ -97,14 +97,14 @@ public:
         return result;
     }
     //v0.6: string + char: str1 + "!";
-    friend const string operator+(const string &lhs, const char rhs)
+    friend const string operator+(const string &lhs,  char rhs)
     {
         string result(lhs);
         result.insert(result.size() - 1, rhs);
         return result;
     }
     //v0.6: string + int: str1 + "5";
-    friend const string operator+(const string &lhs, const int rhs)
+    friend const string operator+(const string &lhs, int rhs)
     {
         string result(lhs);
         std::string str(std::to_string(rhs));
@@ -121,11 +121,17 @@ public:
         lhs.append(rhs._data);
         return lhs;
     }
+    //v0.8: string += "Hello!"
+    friend string &operator+=(string &lhs, const char * rhs)
+    {
+        lhs.append(rhs);
+        return lhs;
+    }
 
     //v1.0: string=="hello!";
-    friend bool operator==(const string &lhs, const string &rhs)
+    friend bool operator==(const string &lhs, const char *rhs)
     {
-        if (lhs.size() != rhs.size())
+        if (lhs.size() != strlen(rhs))
         {
             return false;
         }
@@ -133,7 +139,7 @@ public:
         {
             for (int i = 0; i < lhs.size(); i++)
             {
-                if (*(lhs._data + i) != *(rhs._data))
+                if (*(lhs._data + i) != *(rhs+i))
                     return false;
             }
             return true;
