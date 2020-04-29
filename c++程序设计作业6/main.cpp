@@ -80,6 +80,7 @@ int main() {
     
     //v1.1 读取文件后str5(Hello!)->”Hello!c++ world”
 	hqu::string str5("Hello!");
+	hqu::string str6(str5);
 	cout << "\nDemo of operator>>:" << endl;
     ifstream cin;
 	cin.open("/home/longjinhe/Documents/cpp_document/homework6/text.txt");
