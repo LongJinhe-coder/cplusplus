@@ -1,22 +1,27 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "type": "shell",
-            "label": "g++ build active file",
-            "command": "/usr/bin/g++",
+            "label": "g++.exe build active file",
+			"command": "g++",//默认的是g++.exe的路径
+			//以下是传给g++的参数
             "args": [
-                "-g",
-                "${file}",
-                // "-I","/home/longjinhe/Documents/cplusplus/homework5",
-                // "/home/longjinhe/Documents/cplusplus/homework5/main.cpp",
-                // "/home/longjinhe/Documents/cplusplus/homework5/string.cpp",
-                "-o",
-                "${workspaceFolder}/${fileBasenameNoExtension}"
+                "-g",	// g++ -g
+                "${file}",	// g++ -g main.cpp
+                "-o",	//g++ -g main.cpp -o
+                "${fileDirname}\\${fileBasenameNoExtension}.exe" //g++ -g main.cpp -o main.exe
             ],
             "options": {
-                "cwd": "/usr/bin"
+                "cwd": "D:\\Program Files\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
-        }
-    ],
-    "version": "2.0.0"
-} 
+        },
+    ]
+}

@@ -26,7 +26,7 @@ int InitList(Sqlist &L){
 
 int ListInput(Sqlist &L){
 	int n;
-	printf("璇疯緭鍏ラ『搴忚〃闀垮害n\n");
+	printf("请输入顺序表长度n\n");
 	scanf("%d",&n);
 	for(int i=0;i<n;i++){
 		if(L.lenth>=L.listsize){
@@ -35,7 +35,7 @@ int ListInput(Sqlist &L){
 			L.listsize+=10;
 		}
 		int data;
-			printf("璇疯緭鍏ュ厓绱燶n");
+			printf("请输入元素\n");
 	scanf("%d",&data);
 	L.elem[i]=data;
 	L.lenth++; 
@@ -46,7 +46,7 @@ int ListInput(Sqlist &L){
 int ListInsert(Sqlist &L){
 	int index,data;
 	int i;
-		printf("璇疯緭鍏ユ彃鍏ョ殑浣嶇疆浠ュ強data\n");
+		printf("请输入插入的位置以及data\n");
 		scanf("%d",&index);
 		scanf("%d",&data);
 		if(L.lenth>=L.listsize){
@@ -63,7 +63,7 @@ int ListInsert(Sqlist &L){
 
 int ListDelete(Sqlist &L){
 	int index;
-		printf("璇疯緭鍏ュ垹闄ょ殑浣嶇疆\n");
+		printf("请输入删除的位置\n");
 		scanf("%d",&index);
 		for(int i=index-1;i<L.lenth-1;i++)
 		L.elem[i]=L.elem[i+1];
@@ -71,7 +71,7 @@ int ListDelete(Sqlist &L){
 		return OK;
 }
 int PrintList(Sqlist &L){
-	printf("椤哄簭琛ㄥ厓绱犲涓媆n");
+	printf("顺序表元素如下\n");
 	for(int i=0;i<L.lenth;i++){
 				printf("%d",L.elem[i]);
 	}
